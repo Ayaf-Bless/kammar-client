@@ -2,7 +2,7 @@ import { WithChildren } from "@/types";
 
 function Layout({ children }: WithChildren) {
   return (
-    <div className="w-screen h-screen p-8 flex items-start justify-center">
+    <div className="w-screen h-screen p-2 flex items-start justify-center">
       {children}
     </div>
   );
