@@ -16,9 +16,6 @@ function SignUpForm() {
     <div className="flex w-full items-center justify-center bg-background lg:w-1/2">
       <div className="flex w-full max-w-sm flex-col items-center gap-4 p-4">
         <div className="w-full text-left">
-          <div className="mb-3">
-            <Logo hasHref />
-          </div>
           <p className="pb-2 text-xl font-medium">Create Account</p>
           <p className="text-small text-default-500">
             Sign up for a new account to get started
@@ -52,7 +49,7 @@ function SignUpForm() {
           <Input
             isRequired
             required
-            label="first Name"
+            label="First Name"
             name="firstName"
             placeholder="Enter your first name"
             radius="none"
