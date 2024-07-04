@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
-
 import Illustration from "@/components/auth/Illustration";
-import SigninForm from "@/components/auth/SigninForm";
+import SignUpForm from "@/components/auth/SignupForm";
 
-export default function Component() {
+function Signup() {
   return (
     <div className="relative flex h-screen w-screen">
       {/* Login Form */}
-      <SigninForm />
+      <SignUpForm />
 
       {/* Right side */}
       <Illustration />
     </div>
   );
 }
+
+export default Signup;
