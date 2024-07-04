@@ -14,9 +14,6 @@ function SigninForm() {
     <div className="flex w-full items-center justify-center bg-background lg:w-1/2">
       <div className="flex w-full max-w-sm flex-col items-center gap-4 p-4">
         <div className="w-full text-left">
-          <div className="mb-3">
-            <Logo hasHref />
-          </div>
           <p className="pb-2 text-xl font-medium">Welcome Back</p>
           <p className="text-small text-default-500">
             Log in to your account to continue

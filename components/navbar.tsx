@@ -205,6 +205,9 @@ export default function Navbar() {
           </NavbarMenuItem>
         </NavbarMenu>
       </NextUINav>
+      {/* <main className="mt-6 flex w-full flex-col items-center">
+        <p>Categories goes gere</p>
+      </main> */}
     </div>
   );
 }

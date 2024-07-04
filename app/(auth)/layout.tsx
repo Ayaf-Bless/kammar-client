@@ -1,11 +1,13 @@
+"use client";
+
 import { WithChildren } from "@/types";
 
-function Layout({ children }: WithChildren) {
+function AuthLayout({ children }: WithChildren) {
   return (
-    <div className="w-screen h-screen p-2 flex items-start justify-center">
+    <section className="w-screen h-screen p-2 flex items-start justify-center">
       {children}
-    </div>
+    </section>
   );
 }
 
-export default Layout;
+export default AuthLayout;

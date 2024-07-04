@@ -1,4 +1,4 @@
-import { Link } from "@nextui-org/link";
+import Link from "next/link";
 import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
@@ -17,6 +17,8 @@ export default function Home() {
         Expedita mollitia quisquam rem dignissimos? Iste sunt minus optio rem
         minima.
       </p>
+
+      <Link href={"signin"}>Sign in</Link>
     </div>
   );
 }
