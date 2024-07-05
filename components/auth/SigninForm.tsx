@@ -4,11 +4,20 @@ import { Button, Input, Link, Divider, Checkbox } from "@nextui-org/react";
 import NextLink from "next/link";
 import { Icon } from "@iconify/react";
 
-import Logo from "@/components/logo/Logo";
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
+import { useSignIn } from "@/libs/hooks/useSignIn";
+import { useFormState } from "react-dom";
+import { signInAction } from "@/actions/auth";
 
 function SigninForm() {
   const { isVisible, toggleVisibility } = usePasswordVisibility();
+  const { register, handleSubmit, onSubmit, errors, loading, error } =
+    useSignIn();
+
+  const [data, formAction] = useFormState<any>(signInAction as any, {
+    message: "",
+    error: null,
+  });
 
   return (
     <div className="flex w-full items-center justify-center bg-background lg:w-1/2">
@@ -21,18 +30,20 @@ function SigninForm() {
         </div>
 
         <form
+          action={formAction}
           className="flex w-full flex-col gap-3"
-          onSubmit={(e) => e.preventDefault()}
+          // onSubmit={handleSubmit(onSubmit)}
         >
           <Input
             isRequired
             label="Email Address"
-            name="email"
             placeholder="Enter your email"
             radius="none"
             required={true}
             type="email"
             variant="bordered"
+            {...register("email")}
+            errorMessage={errors.email?.message}
           />
           <Input
             isRequired
@@ -52,24 +63,28 @@ function SigninForm() {
               </button>
             }
             label="Password"
-            name="password"
             placeholder="Enter your password"
             radius="none"
             required={true}
             type={isVisible ? "text" : "password"}
             variant="bordered"
+            {...register("password")}
+            errorMessage={errors.password?.message}
           />
-          <div className="flex items-center justify-between px-1 py-2">
-            <Checkbox name="remember" radius="none" size="sm">
-              Remember for 15 days
-            </Checkbox>
+          <div className="flex items-end justify-end px-1 py-2">
             <Link as={NextLink} className="text-default-500" href="#" size="sm">
               Forgot password?
             </Link>
           </div>
-          <Button color="primary" radius="none" type="submit">
+          <Button
+            color="primary"
+            isLoading={loading}
+            radius="none"
+            type="submit"
+          >
             Log In
           </Button>
+          {error && <p className="text-red-500">{error}</p>}
         </form>
 
         <div className="flex w-full items-center gap-4 py-2">
