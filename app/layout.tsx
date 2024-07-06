@@ -43,7 +43,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <Navbar />
-          <main className=" flex-grow">{children}</main>
+          <main className="w-full">{children}</main>
         </Providers>
       </body>
     </html>

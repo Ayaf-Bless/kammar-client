@@ -39,34 +39,6 @@ function SignUpForm() {
           <Input
             isRequired
             required
-            label="Username"
-            name="username"
-            placeholder="Enter your username"
-            radius="none"
-            type="text"
-            variant="bordered"
-          />
-          <Input
-            isRequired
-            required
-            label="First Name"
-            name="firstName"
-            placeholder="Enter your first name"
-            radius="none"
-            type="text"
-            variant="bordered"
-          />
-          <Input
-            label="Last Name"
-            name="lastName"
-            placeholder="Enter your last name"
-            radius="none"
-            type="text"
-            variant="bordered"
-          />
-          <Input
-            isRequired
-            required
             endContent={
               <button type="button" onClick={toggleVisibility}>
                 {isVisible ? (

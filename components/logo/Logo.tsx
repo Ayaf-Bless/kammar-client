@@ -5,22 +5,24 @@ import { Link } from "@nextui-org/link";
 
 import useThemeSwitcher from "@/libs/hooks/useThemeSwitcher";
 
-interface Prop {
-  hasHref?: boolean;
-}
-
-const Logo: React.FC<Prop> = ({ hasHref }) => {
+const Logo: React.FC = () => {
   const { mounted, toggleTheme } = useThemeSwitcher();
 
   if (!mounted) return null;
 
   return (
     <div>
-      <Link href={hasHref ? "/" : "#"}>
-        <div className="inline-flex items-center space-x-1 text-2xl font-bold text-gray-900 dark:text-white">
-          <span>kam</span>
+      <div className="flex items-center min-w-max">
+        <Link
+          className="text-xl font-semibold text-gray-800 dark:text-gray-200"
+          href="/"
+        >
+          <span className="relative after:absolute after:inset-0 after:rotate-3 after:border after:border-emerald-600 text-emerald-800 dark:text-white">
+            Kammar
+          </span>
+          ket
           <span
-            className="h-4 w-4 bg-primary rounded-full cursor-pointer"
+            className="mx-1 h-4 w-4 bg-emerald-800 rounded-full cursor-pointer"
             role="button"
             tabIndex={0}
             onClick={(e) => {
@@ -34,9 +36,8 @@ const Logo: React.FC<Prop> = ({ hasHref }) => {
               }
             }}
           />
-          <span>mar</span>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };

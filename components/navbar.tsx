@@ -15,44 +15,62 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Tabs,
-  Tab,
-  AvatarGroup,
-  Avatar,
-  Chip,
-  Tooltip,
-  ScrollShadow,
-  Divider,
-  Breadcrumbs,
-  BreadcrumbItem,
   Input,
-  Badge,
 } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 
-import NotificationsCard from "./notifications-card";
 import Logo from "./logo/Logo";
 import { ThemeSwitch } from "./theme-switch";
 
-// import {AcmeIcon} from "./social";
-
 export default function Navbar() {
   return (
-    <div className="w-full">
+    <div className="">
       <NextUINav
         isBordered
         classNames={{
           item: "data-[active=true]:text-primary",
-          wrapper: "px-4 sm:px-6",
+          wrapper: "px-4 sm:px-6 w-full max-w-[90%] container",
         }}
         height="64px"
       >
         <NavbarBrand>
           <NavbarMenuToggle className="mr-2 h-6 sm:hidden" />
-          <Logo hasHref />
+          <Logo />
+          <NavbarItem className="hidden lg:flex ml-2">
+            <Dropdown radius="none">
+              <NavbarItem>
+                <DropdownTrigger>
+                  <Button
+                    disableRipple
+                    className="py-2 bg-transparent data-[hover=true]:bg-transparent"
+                    radius="none"
+                    variant="bordered"
+                  >
+                    Categories
+                  </Button>
+                </DropdownTrigger>
+              </NavbarItem>
+              <DropdownMenu
+                aria-label="category"
+                className="w-full"
+                itemClasses={{
+                  base: "gap-4",
+                }}
+              >
+                <DropdownItem key="autoscaling">
+                  <h1>Heee</h1>
+                </DropdownItem>
+                <DropdownItem key="usage_metrics">Usage Metrics</DropdownItem>
+                <DropdownItem key="production_ready">
+                  Production Ready
+                </DropdownItem>
+                <DropdownItem key="99_uptime">+99% Uptime</DropdownItem>
+                <DropdownItem key="supreme_support">
+                  +Supreme Support
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
         </NavbarBrand>
 
         {/* Right Menu */}
@@ -92,7 +110,7 @@ export default function Navbar() {
           <NavbarItem className="hidden lg:flex">
             <ThemeSwitch />
           </NavbarItem>
-          {/* Settings */}
+          {/* 
           <NavbarItem className="hidden lg:flex">
             <Button isIconOnly radius="full" variant="light">
               <Icon
@@ -102,8 +120,8 @@ export default function Navbar() {
               />
             </Button>
           </NavbarItem>
-          {/* Notifications */}
-          <NavbarItem className="flex">
+          
+         <NavbarItem className="flex">
             <Popover offset={12} placement="bottom-end">
               <PopoverTrigger>
                 <Button
@@ -114,7 +132,7 @@ export default function Navbar() {
                   variant="light"
                 >
                   <Badge
-                    color="danger"
+                    className="bg-emerald-800"
                     content="5"
                     showOutline={false}
                     size="md"
@@ -132,13 +150,13 @@ export default function Navbar() {
               </PopoverContent>
             </Popover>
           </NavbarItem>
-          {/* User Menu */}
+          
           <NavbarItem className="px-2">
             <Dropdown placement="bottom-end">
               <DropdownTrigger>
                 <button className="mt-1 h-8 w-8 transition-transform">
                   <Badge
-                    color="success"
+                    className="bg-emerald-800"
                     content=""
                     placement="bottom-right"
                     shape="circle"
@@ -168,6 +186,55 @@ export default function Navbar() {
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
+          </NavbarItem> */}
+          <div className="flex flex-row gap-2 mx-2">
+            <NavbarItem>
+              <Button
+                as={Link}
+                // className="text-primary"
+                // color="primary"
+                href="/signup"
+                radius="none"
+                variant="bordered"
+              >
+                Sign Up
+              </Button>
+            </NavbarItem>
+
+            <NavbarItem>
+              <Button
+                as={Link}
+                // className="text-primary"
+                // color="primary"
+                href="/signin"
+                radius="none"
+                variant="bordered"
+              >
+                Sign In
+              </Button>
+            </NavbarItem>
+          </div>
+          <NavbarItem>
+            <Button
+              as={Link}
+              className="flex items-center justify-center flex-row px-6  bg-emerald-800 text-white border border-emerald-800"
+              href="/become_seller"
+              radius="none"
+              variant="bordered"
+            >
+              <span>Become a seller</span>
+              <svg
+                height="1em"
+                viewBox="0 0 28 28"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778z"
+                  fill="currentColor"
+                />
+              </svg>
+            </Button>
           </NavbarItem>
         </NavbarContent>
 
@@ -205,9 +272,6 @@ export default function Navbar() {
           </NavbarMenuItem>
         </NavbarMenu>
       </NextUINav>
-      {/* <main className="mt-6 flex w-full flex-col items-center">
-        <p>Categories goes gere</p>
-      </main> */}
     </div>
   );
 }
