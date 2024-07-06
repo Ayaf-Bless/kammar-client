@@ -7,8 +7,11 @@ import {
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { api } from "./api";
+
+import authRedusers from "@/services/auth/reducers/auth.redusers";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +21,7 @@ const persistConfig = {
 
 export const combinedReducer = combineReducers({
   [api.reducerPath]: api.reducer,
+  authUser: authRedusers,
 });
 
 export const rootReducers: Reducer<RootState> = (state, action) => {
@@ -41,6 +45,8 @@ export const store: EnhancedStore = configureStore({
       },
     }).concat(api.middleware),
 });
+
+setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispach = typeof store.dispatch;

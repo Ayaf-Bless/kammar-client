@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
-import { useSignInMutation } from "@/services/auth.services";
+import { useSignInMutation } from "@/services/auth/auth.services";
 
 const signInSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -127,7 +127,7 @@ function SigninForm() {
             radius="none"
             type="submit"
           >
-            Log In
+            Sign In
           </Button>
           {error && <p className="text-red-500">{error}</p>}
         </form>
