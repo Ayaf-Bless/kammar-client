@@ -1,4 +1,4 @@
-export interface AppRequestResponse<T> {
+export interface AppResponse<T> {
   statusCode: number;
   timestamp: Date;
   path: string;

@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 
-import { AppRequestResponse } from "@/interface/RequestResponse";
+import { AppResponse } from "@/interface/RequestResponse";
 import { apiRequest } from "@/libs/api-query/api-server-request";
 import { setCookies } from "@/libs/general/cookies";
 import { BACK_END_BASE_URL } from "@/utils/constants";
@@ -32,7 +32,7 @@ export async function signInAction(prevState: any, formData: FormData) {
 
   try {
     const response = await apiRequest<
-      AppRequestResponse<{
+      AppResponse<{
         accessToken: string;
         refreshToken: string;
       }>

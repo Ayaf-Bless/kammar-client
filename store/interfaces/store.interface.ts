@@ -1,5 +1,7 @@
+import { IUser } from "@/interface/auth/auth.interface";
+
 export interface IReduxState {
-  authUser: {};
+  authUser: IUser;
   header: string;
   loggedOut: boolean;
   buyer: {};
