@@ -1,12 +1,12 @@
 "use client";
 
-import { Button, Input, Link, Divider, Checkbox } from "@nextui-org/react";
+import { Button, Input, Link, Divider } from "@nextui-org/react";
 import NextLink from "next/link";
 import { Icon } from "@iconify/react";
+import { useFormState } from "react-dom";
 
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { useSignIn } from "@/libs/hooks/useSignIn";
-import { useFormState } from "react-dom";
 import { signInAction } from "@/actions/auth";
 
 function SigninForm() {

@@ -5,8 +5,6 @@ import { Button } from "@nextui-org/button";
 import { Checkbox, Divider, Input, Link } from "@nextui-org/react";
 import NextLink from "next/link";
 
-import Logo from "../logo/Logo";
-
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 
 function SignUpForm() {
@@ -124,8 +122,8 @@ function SignUpForm() {
 
         <p className="text-center text-small">
           Already have an account?&nbsp;
-          <Link as={NextLink} href="signin" size="sm">
-            Log In
+          <Link as={NextLink} color="primary" href="signin" size="sm">
+            Sign In
           </Link>
         </p>
       </div>

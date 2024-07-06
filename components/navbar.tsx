@@ -217,7 +217,8 @@ export default function Navbar() {
           <NavbarItem>
             <Button
               as={Link}
-              className="flex items-center justify-center flex-row px-6  bg-emerald-800 text-white border border-emerald-800"
+              className="bg-primary text-white border"
+              color="primary"
               href="/become_seller"
               radius="none"
               variant="bordered"

@@ -1,132 +1,75 @@
 "use client";
 
-import { Link } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import NextLink from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="w-full bg-white dark:bg-black">
-      <div className="absolute top-0 inset-x-0 h-64 flex items-start">
-        <div className="h-24 w-2/3 bg-gradient-to-br from-emerald-800 opacity-20 blur-2xl dark:from-emerald-800 dark:invisible dark:opacity-40" />
-        <div className="h-20 w-3/5 bg-gradient-to-r from-emerald-400 opacity-40 blur-2xl dark:bg-emerald-950 dark:opacity-40" />
-      </div>
-      <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-2/5 aspect-[2/0.5] bg-gradient-to-br from-emerald-600 to-emerald-400 rounded-full opacity-50 blur-2xl" />
-      <div className="relative mx-auto pt-32 pb-24 lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5 text-center space-y-10">
-        <h1 className="text-gray-900 dark:text-white mx-auto max-w-5xl font-bold text-4xl/tight sm:text-5xl/tight lg:text-6xl/tight xl:text-7xl/tight">
-          Experience the same buying and selling dynamics as in real life,
-          <em className="text-emerald-800"> but safer</em>
-        </h1>
-        <p className="text-gray-800 dark:text-gray-300 mx-auto max-w-2xl">
-          Kammar ensures that every transaction mimics the authenticity of
-          real-life interactions while prioritizing your security. Whether
-          you&apos;re a buyer seeking quality services or a seller looking to
-          expand your clientele, we provide a seamless and trustworthy
-          environment for all your needs. With advanced safety measures and
-          user-friendly features, enjoy peace of mind as you engage in a dynamic
-          marketplace.
-        </p>
-        <div className="flex justify-center items-center flex-wrap mx-auto gap-4">
-          <Link
-            as={NextLink}
-            className="flex items-center h-12 px-6  bg-emerald-800 text-white border border-emerald-800"
-            href="#"
-          >
-            Hire us Now
-          </Link>
-          <Link
-            className="flex items-center h-12 px-6 bg-gray-100 dark:bg-gray-900 text-emerald-800 dark:text-gray-300 border border-gray-200 dark:border-gray-800"
-            href="#"
-          >
-            Learn more
-          </Link>
+    <section className="bg-gray-100 dark:bg-gray-900 py-32 sm:py-36 lg:py-40 overflow-hidden min-h-max flex items-center relative">
+      <div
+        className="absolute top-0 left-0 -translate-x-[54%] -translate-y-[70%] w-2/5 rounded-full aspect-square bg-emerald-600/70
+  backdrop-filter blur-3xl opacity-50"
+      />
+      <div
+        className="absolute bottom-0 right-0 translate-x-[54%] translate-y-[70%] w-2/5 rounded-full aspect-square bg-emerald-600/70
+  backdrop-filter blur-3xl opacity-50"
+      />
+      <div
+        className="absolute min-w-[300px] w-[48%] md:w-2/5 aspect-square rounded-full bg-gradient-to-r from-emerald-400/5 right-0
+  -translate-y-[40%] translate-x-[40%] top-0"
+      >
+        <div className="inset-[10%] rounded-full bg-gradient-to-l from-emerald-400/20">
+          <div className="absolute inset-[20%] rounded-full bg-gradient-to-l from-emerald-400/30" />
         </div>
-        <div className="text-left grid lg:grid-cols-3 p-6 rounded-2xl bg-gradient-to-tr from-gray-50 to-gray-200 dark:from-gray-900 dark:to-gray-800 border border-gray-100 dark:border-gray-800 max-w-2xl lg:max-w-5xl mx-auto lg:divide-x divide-y lg:divide-y-0 divide-gray-300 dark:divide-gray-800">
-          <div className="flex items-start gap-6 lg:pr-6 pb-6 lg:pb-0">
-            <div className="w-10">
-              <span className="p-3 rounded-xl bg-gray-200 dark:bg-gray-800 flex w-max text-gray-800 dark:text-gray-200">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M4.5 10.5H18V15H4.5v-4.5zM3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </div>
-            <div className="flex-1 space-y-1">
-              <h2 className="text-gray-900 dark:text-white font-semibold text-lg">
-                Explore Services
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Browse through all services from our sellers and choose the one
-                that fits your needs and pleases you the most.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-6 lg:px-6 py-6 lg:py-0">
-            <div className="w-10">
-              <span className="p-3 rounded-xl bg-gray-200 dark:bg-gray-800 flex w-max text-gray-800 dark:text-gray-200">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M4.5 10.5H18V15H4.5v-4.5zM3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </div>
-            <div className="flex-1 space-y-1">
-              <h2 className="text-gray-900 dark:text-white font-semibold text-lg">
-                Communicate and Negotiate
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Before the seller starts working on your order, you might have
-                some questions. Feel free to ask and negotiate as needed.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-6 pt-6 lg:pt-0 lg:pl-6">
-            <div className="w-10">
-              <span className="p-3 rounded-xl bg-gray-200 dark:bg-gray-800 flex w-max text-gray-800 dark:text-gray-200">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </div>
-            <div className="flex-1 space-y-1">
-              <h2 className="text-gray-900 dark:text-white font-semibold text-lg">
-                Secure Payment
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                The seller will receive payment only after you have validated
-                the product.
-              </p>
-            </div>
+      </div>
+      <div
+        className="absolute min-w-[300px] w-[48%] md:w-2/5 aspect-square rounded-full bg-gradient-to-l from-emerald-400/5 left-0
+  translate-y-[40%] -translate-x-[40%] bottom-0"
+      >
+        <div className="inset-[10%] rounded-full bg-gradient-to-r from-emerald-400/40">
+          <div className="absolute inset-[20%] rounded-full bg-gradient-to-r from-emerald-400/50" />
+        </div>
+      </div>
+      <div className="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5">
+        <div className="text-center flex flex-col items-center space-y-10">
+          <span className="border border-gray-500 px-3 py-0.5 rounded-full bg-gray-50 dark:bg-gray-950 bg-opacity-50 text-gray-700 dark:text-gray-300">
+            Creativity in mind
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl/tight xl:text-7xl/tight text-gray-900 dark:text-white font-bold max-w-4xl capitalize">
+            Same dynamics as in real life,
+            <em className="text-primary"> but safer</em>
+          </h1>
+          <p className="text-base text-gray-700 dark:text-gray-300 text-center max-w-[70%]">
+            Kammar ensures that every transaction mimics the authenticity of
+            real-life interactions while prioritizing your security. Whether
+            you&apos;re a buyer seeking quality services or a seller looking to
+            expand your clientele, we provide a seamless and trustworthy
+            environment for all your needs. With advanced safety measures and
+            user-friendly features, enjoy peace of mind as you engage in a
+            dynamic marketplace.
+          </p>
+          <div className="flex justify-center">
+            <Button
+              as={Link}
+              className="bg-primary text-white border px-8 h-12"
+              color="primary"
+              href="/become_seller"
+              radius="full"
+              variant="bordered"
+            >
+              <span>Let&apos;s talk</span>
+              <svg
+                height="1em"
+                viewBox="0 0 28 28"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778z"
+                  fill="currentColor"
+                />
+              </svg>
+            </Button>
           </div>
         </div>
       </div>
