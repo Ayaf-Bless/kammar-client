@@ -217,7 +217,7 @@ export default function Navbar() {
           <NavbarItem>
             <Button
               as={Link}
-              className="bg-primary text-white border"
+              className="dark:text-white light:text-primary border"
               color="primary"
               href="/become_seller"
               radius="none"

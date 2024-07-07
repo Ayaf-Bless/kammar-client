@@ -16,6 +16,9 @@ import { useSignUpMutation } from "@/services/auth/auth.services";
 
 const signUpSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
+  username: z
+    .string()
+    .min(5, { message: "Username should have at least 5 characters" }),
   password: z.string().min(PASSWORD_MIN_LENGTH, {
     message: `Password must be at least ${PASSWORD_MIN_LENGTH} characters`,
   }),
@@ -41,6 +44,7 @@ function SignUpForm() {
         email: data.email,
         password: data.password,
         confirmPassword: data.confirmPassword,
+        username: data.username,
       }).unwrap();
       const token = result.data as string;
 
@@ -84,6 +88,18 @@ function SignUpForm() {
             errorMessage={errors.email?.message}
             isInvalid={errors.email ? true : false}
             type="email"
+            variant="bordered"
+          />
+          <Input
+            isRequired
+            required
+            label="Username"
+            placeholder="Enter your username"
+            radius="none"
+            {...register("username")}
+            errorMessage={errors.username?.message}
+            isInvalid={errors.username ? true : false}
+            type="text"
             variant="bordered"
           />
           <Input

@@ -64,6 +64,8 @@ export interface IUser {
 export interface ISignUpPayload {
   email: string;
 
+  username: string;
+
   password: string;
 
   confirmPassword: string;
