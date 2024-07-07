@@ -1,12 +1,26 @@
+"use client";
+
+import React, { useState } from "react";
+
 import ContentSide from "@/components/auth/onBoarding/ContentsSide";
 import { OnboardingUserSideBar } from "@/components/auth/onBoarding/onboardingUserSidebar";
 import VerticalSteps from "@/components/vertical-steps";
 
-function onboarding() {
+function Onboarding() {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const handleStepChange = (stepIndex: number) => {
+    setCurrentStep(stepIndex);
+  };
+
   return (
     <div className="flex gap-5">
-      <OnboardingUserSideBar>
+      <OnboardingUserSideBar
+        currentStep={currentStep}
+        onStepChange={handleStepChange}
+      >
         <VerticalSteps
+          currentStep={currentStep}
           steps={[
             {
               title: "Let's Get to Know You",
@@ -26,12 +40,13 @@ function onboarding() {
               description: "A warm welcome message from our CEO",
             },
           ]}
+          onStepChange={handleStepChange}
         />
       </OnboardingUserSideBar>
 
-      <ContentSide />
+      <ContentSide currentStep={currentStep} onStepChange={handleStepChange} />
     </div>
   );
 }
 
-export default onboarding;
+export default Onboarding;

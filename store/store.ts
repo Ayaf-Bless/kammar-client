@@ -11,17 +11,17 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { api } from "./api";
 
-import authRedusers from "@/services/auth/reducers/auth.redusers";
+import authReducer from "@/services/auth/reducers/auth.redusers";
 
 const persistConfig = {
   key: "root",
-  storage,
-  blacklist: ["clientApi", "_persit"],
+  storage: storage,
+  blacklist: ["clientApi", "_persist"],
 };
 
-export const combinedReducer = combineReducers({
+export const combineReducer = combineReducers({
   [api.reducerPath]: api.reducer,
-  authUser: authRedusers,
+  authUser: authReducer,
 });
 
 export const rootReducers: Reducer<RootState> = (state, action) => {

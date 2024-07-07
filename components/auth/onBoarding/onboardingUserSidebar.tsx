@@ -4,7 +4,16 @@ import GoBackOnboarding from "./goBack";
 
 import { WithChildren } from "@/types";
 
-export const OnboardingUserSideBar = ({ children }: WithChildren) => {
+interface Props {
+  onStepChange: (stepIndex: number) => void;
+  currentStep: number;
+}
+
+export const OnboardingUserSideBar = ({
+  children,
+  currentStep,
+  onStepChange,
+}: WithChildren & Props) => {
   return (
     <div className="flex flex-col justify-between h-[90vh]">
       <div className="flex flex-col gap-14">
@@ -12,7 +21,7 @@ export const OnboardingUserSideBar = ({ children }: WithChildren) => {
         {children}
       </div>
 
-      <GoBackOnboarding />
+      <GoBackOnboarding currentStep={currentStep} onStepChange={onStepChange} />
     </div>
   );
 };

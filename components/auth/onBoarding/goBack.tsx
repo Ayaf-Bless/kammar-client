@@ -1,11 +1,25 @@
 import { Button } from "@nextui-org/button";
 
-function GoBackOnboarding() {
+interface Props {
+  onStepChange: (stepIndex: number) => void;
+  currentStep: number;
+}
+
+function GoBackOnboarding({ currentStep, onStepChange }: Props) {
+  const handleClick = () => {
+    if (currentStep > 0) {
+      onStepChange(currentStep - 1);
+    }
+  };
+
   return (
     <Button
       className="flex gap-1 items-center cursor-pointer"
+      disableAnimation={currentStep <= 0}
+      isDisabled={currentStep <= 0}
       radius="none"
       variant="light"
+      onClick={handleClick}
     >
       <svg
         height="1.2em"
