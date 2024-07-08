@@ -26,9 +26,9 @@ import { Icon } from "@iconify/react";
 
 import Logo from "./logo/Logo";
 import { ThemeSwitch } from "./theme-switch";
+import NotificationsCard from "./notifications-card";
 
 import { useCurrentUser } from "@/libs/hooks/useCurrentUser";
-import NotificationsCard from "./notifications-card";
 
 export default function Navbar() {
   const currentUser = useCurrentUser();

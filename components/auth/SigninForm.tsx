@@ -7,11 +7,12 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
 import { useSignInMutation } from "@/services/auth/auth.services";
+import { setTokens } from "@/libs/general/token";
 
 const signInSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -26,6 +27,7 @@ type SignInFormData = z.infer<typeof signInSchema>;
 function SigninForm() {
   const [signIn, { isLoading }] = useSignInMutation();
   const { isVisible, toggleVisibility } = usePasswordVisibility();
+  const router = useRouter();
 
   const [error, setError] = useState<string | null>(null);
 
@@ -38,8 +40,10 @@ function SigninForm() {
         password: data.password,
       }).unwrap();
 
-      Cookies.set("accessToken", result.data?.accessToken as string);
-      Cookies.set("refreshToken", result.data?.refreshToken as string);
+      if (result.data?.accessToken && result.data.refreshToken) {
+        setTokens(result.data.accessToken, result.data.refreshToken);
+        router.push(`/`);
+      }
 
       // redirect("/");
       // const response = useSignInMutation({})
