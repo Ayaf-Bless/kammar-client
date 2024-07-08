@@ -16,9 +16,10 @@ type Country = {
 
 interface Prop {
   countries: Country[];
+  name: string;
 }
 
-const CountrySelect: React.FC<Prop> = ({ countries }) => {
+const CountrySelect: React.FC<Prop> = ({ countries, name }) => {
   const countryOptions = useMemo(() => {
     return countries.map((country) => (
       <SelectItem
@@ -26,6 +27,7 @@ const CountrySelect: React.FC<Prop> = ({ countries }) => {
         startContent={
           <Avatar alt={country.name} className="w-6 h-6" src={country.flag} />
         }
+        value={country.name}
       >
         {country.name}
       </SelectItem>
@@ -40,6 +42,7 @@ const CountrySelect: React.FC<Prop> = ({ countries }) => {
       radius="none"
       variant="bordered"
       isRequired
+      name={name}
     >
       {countryOptions}
     </Select>

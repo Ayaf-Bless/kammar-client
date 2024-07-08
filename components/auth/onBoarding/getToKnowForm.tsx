@@ -6,17 +6,45 @@ import { Button, DateInput } from "@nextui-org/react";
 import CountrySelect from "@/components/countrySelect";
 import { countries } from "@/utils/constants";
 import { useAppSelector } from "@/store/store";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useToast } from "@/contexts/ToastContext";
 
 interface Props {
   onStepChange: (stepIndex: number) => void;
 }
 
+const GetToknowFormSchema = z.object({
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  phoneNumber: z.string().optional(),
+  country: z.string().optional(),
+  birthDate: z.date().optional(),
+  // profilePicture: z.file,
+});
+
+type GetToknowFormSchema = z.infer<typeof GetToknowFormSchema>;
+
 function GetToknowForm({ onStepChange }: Props) {
   const username = useAppSelector((state) => state.auth.username);
 
-  const handleSubmit = () => {
-    // Handle form submission
-    onStepChange(1); // Move to the next step
+  const { addToast } = useToast();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<GetToknowFormSchema>({
+    resolver: zodResolver(GetToknowFormSchema),
+  });
+
+  const onSubmit = async (data: GetToknowFormSchema) => {
+    console.log(data);
+    try {
+    } catch (err: any) {
+      addToast("error", "Something went wrong", err.data.message);
+    }
   };
 
   return (
@@ -31,7 +59,10 @@ function GetToknowForm({ onStepChange }: Props) {
         </p>
       </div>
       <div>
-        <form className="flex w-full flex-col gap-3 max-w-md">
+        <form
+          className="flex w-full flex-col gap-3 max-w-md"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Input
             isRequired
             label="Your first name"
@@ -40,7 +71,7 @@ function GetToknowForm({ onStepChange }: Props) {
             required={true}
             type="text"
             variant="bordered"
-            //   {...register("email")}
+            {...register("firstName")}
             //   errorMessage={errors.email?.message}
             //   isInvalid={errors.email ? true : false}
           />
@@ -50,6 +81,7 @@ function GetToknowForm({ onStepChange }: Props) {
             radius="none"
             type="text"
             variant="bordered"
+            {...register("lastName")}
             //   {...register("email")}
             //   errorMessage={errors.email?.message}
             //   isInvalid={errors.email ? true : false}
@@ -61,19 +93,20 @@ function GetToknowForm({ onStepChange }: Props) {
             radius="none"
             type="tel"
             variant="bordered"
-            //   {...register("email")}
+            {...register("phoneNumber")}
             //   errorMessage={errors.email?.message}
             //   isInvalid={errors.email ? true : false}
           />
-          <CountrySelect countries={countries} />
+          <CountrySelect countries={countries} {...register("country")} />
           <DateInput
             isRequired
             label="Birth date"
             placeholderValue={new CalendarDate(1995, 11, 6)}
             radius="none"
             variant="bordered"
+            // {...register("birthDate")}
           />
-          <Input
+          {/* <Input
             isRequired
             label="Choose your profile picture"
             placeholder="Choose your profile picture"
@@ -83,7 +116,7 @@ function GetToknowForm({ onStepChange }: Props) {
             //   {...register("email")}
             //   errorMessage={errors.email?.message}
             //   isInvalid={errors.email ? true : false}
-          />
+          /> */}
           <Button color="primary" radius="none" type="submit">
             Continue
           </Button>
