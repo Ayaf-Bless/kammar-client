@@ -16,13 +16,23 @@ import {
   DropdownMenu,
   DropdownItem,
   Input,
+  Popover,
+  PopoverTrigger,
+  Badge,
+  PopoverContent,
+  Avatar,
 } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 
 import Logo from "./logo/Logo";
 import { ThemeSwitch } from "./theme-switch";
 
+import { useCurrentUser } from "@/libs/hooks/useCurrentUser";
+import NotificationsCard from "./notifications-card";
+
 export default function Navbar() {
+  const currentUser = useCurrentUser();
+
   return (
     <div className="">
       <NextUINav
@@ -110,110 +120,122 @@ export default function Navbar() {
           <NavbarItem className="hidden lg:flex">
             <ThemeSwitch />
           </NavbarItem>
-          {/* 
-          <NavbarItem className="hidden lg:flex">
-            <Button isIconOnly radius="full" variant="light">
-              <Icon
-                className="text-default-500"
-                icon="solar:settings-linear"
-                width={24}
-              />
-            </Button>
-          </NavbarItem>
-          
-         <NavbarItem className="flex">
-            <Popover offset={12} placement="bottom-end">
-              <PopoverTrigger>
-                <Button
-                  disableRipple
-                  isIconOnly
-                  className="overflow-visible"
-                  radius="full"
-                  variant="light"
-                >
-                  <Badge
-                    className="bg-emerald-800"
-                    content="5"
-                    showOutline={false}
-                    size="md"
-                  >
-                    <Icon
-                      className="text-default-500"
-                      icon="solar:bell-linear"
-                      width={22}
-                    />
-                  </Badge>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="max-w-[90vw] p-0 sm:max-w-[380px]">
-                <NotificationsCard className="w-full shadow-none" />
-              </PopoverContent>
-            </Popover>
-          </NavbarItem>
-          
-          <NavbarItem className="px-2">
-            <Dropdown placement="bottom-end">
-              <DropdownTrigger>
-                <button className="mt-1 h-8 w-8 transition-transform">
-                  <Badge
-                    className="bg-emerald-800"
-                    content=""
-                    placement="bottom-right"
-                    shape="circle"
-                  >
-                    <Avatar
-                      size="sm"
-                      src="https://i.pravatar.cc/150?u=a04258114e29526708c"
-                    />
-                  </Badge>
-                </button>
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">johndoe@example.com</p>
-                </DropdownItem>
-                <DropdownItem key="settings">My Settings</DropdownItem>
-                <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                <DropdownItem key="analytics">Analytics</DropdownItem>
-                <DropdownItem key="system">System</DropdownItem>
-                <DropdownItem key="configurations">Configurations</DropdownItem>
-                <DropdownItem key="help_and_feedback">
-                  Help & Feedback
-                </DropdownItem>
-                <DropdownItem key="logout" color="danger">
-                  Log Out
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </NavbarItem> */}
-          <div className="flex flex-row gap-2 mx-2">
-            <NavbarItem>
-              <Button
-                as={Link}
-                // className="text-primary"
-                // color="primary"
-                href="/signup"
-                radius="none"
-                variant="bordered"
-              >
-                Sign Up
-              </Button>
-            </NavbarItem>
 
-            <NavbarItem>
-              <Button
-                as={Link}
-                // className="text-primary"
-                // color="primary"
-                href="/signin"
-                radius="none"
-                variant="bordered"
-              >
-                Sign In
-              </Button>
-            </NavbarItem>
-          </div>
+          {currentUser ? (
+            <>
+              <NavbarItem className="hidden lg:flex">
+                <Button isIconOnly radius="full" variant="light">
+                  <Icon
+                    className="text-default-500"
+                    icon="solar:settings-linear"
+                    width={24}
+                  />
+                </Button>
+              </NavbarItem>
+
+              <NavbarItem className="flex">
+                <Popover offset={12} placement="bottom-end">
+                  <PopoverTrigger>
+                    <Button
+                      disableRipple
+                      isIconOnly
+                      className="overflow-visible"
+                      radius="full"
+                      variant="light"
+                    >
+                      <Badge
+                        className="bg-primary"
+                        content="5"
+                        showOutline={false}
+                        size="md"
+                      >
+                        <Icon
+                          className="text-default-500"
+                          icon="solar:bell-linear"
+                          width={22}
+                        />
+                      </Badge>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="max-w-[90vw] p-0 sm:max-w-[380px]">
+                    <NotificationsCard className="w-full shadow-none" />
+                  </PopoverContent>
+                </Popover>
+              </NavbarItem>
+
+              <NavbarItem className="px-2">
+                <Dropdown placement="bottom-end">
+                  <DropdownTrigger>
+                    <button className="mt-1 h-8 w-8 transition-transform">
+                      <Badge
+                        className="bg-primary"
+                        content=""
+                        placement="bottom-right"
+                        shape="circle"
+                      >
+                        <Avatar
+                          size="sm"
+                          src="https://i.pravatar.cc/150?u=a04258114e29526708c"
+                        />
+                      </Badge>
+                    </button>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="Profile Actions" variant="flat">
+                    <DropdownItem key="profile" className="h-14 gap-2">
+                      <p className="font-semibold">Signed in as</p>
+                      <p className="font-semibold">johndoe@example.com</p>
+                    </DropdownItem>
+                    <DropdownItem key="settings">My Settings</DropdownItem>
+                    <DropdownItem key="team_settings">
+                      Team Settings
+                    </DropdownItem>
+                    <DropdownItem key="analytics">Analytics</DropdownItem>
+                    <DropdownItem key="system">System</DropdownItem>
+                    <DropdownItem key="configurations">
+                      Configurations
+                    </DropdownItem>
+                    <DropdownItem key="help_and_feedback">
+                      Help & Feedback
+                    </DropdownItem>
+                    <DropdownItem key="logout" color="danger">
+                      Log Out
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </NavbarItem>
+            </>
+          ) : (
+            <>
+              <div className="flex flex-row gap-2 mx-2">
+                <NavbarItem>
+                  <Button
+                    as={Link}
+                    // className="text-primary"
+                    // color="primary"
+                    href="/signup"
+                    radius="none"
+                    variant="bordered"
+                  >
+                    Sign Up
+                  </Button>
+                </NavbarItem>
+
+                <NavbarItem>
+                  <Button
+                    as={Link}
+                    // className="text-primary"
+                    // color="primary"
+                    href="/signin"
+                    radius="none"
+                    variant="bordered"
+                  >
+                    Sign In
+                  </Button>
+                </NavbarItem>
+              </div>
+            </>
+          )}
+
           <NavbarItem>
             <Button
               as={Link}

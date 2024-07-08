@@ -2,13 +2,14 @@ import {
   IAuthToken,
   ISignInPayload,
   ISignUpPayload,
+  IUser,
 } from "@/interface/auth/auth.interface";
 import { AppResponse } from "@/interface/RequestResponse";
 import { api } from "@/store/api";
 
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
-    signUp: build.mutation<AppResponse<string>, ISignUpPayload>({
+    signUp: build.mutation<AppResponse<IAuthToken>, ISignUpPayload>({
       query(body: ISignUpPayload) {
         return {
           url: "auth/sign-up",
@@ -29,7 +30,20 @@ export const authApi = api.injectEndpoints({
       },
       invalidatesTags: ["Auth"],
     }),
+
+    me: build.query<AppResponse<IUser>, string>({
+      query(token: string) {
+        return {
+          url: "auth/me",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
+      providesTags: ["Auth"],
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useMeQuery } = authApi;

@@ -7,6 +7,12 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 
+import dynamic from "next/dynamic";
+
+const ReduxProvider = dynamic(() => import("@/store/reduxProviver"), {
+  ssr: false,
+});
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -39,9 +45,11 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <main className="w-full">{children}</main>
-        </Providers>
+        <ReduxProvider>
+          <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+            <main className="w-full">{children}</main>
+          </Providers>
+        </ReduxProvider>
       </body>
     </html>
   );

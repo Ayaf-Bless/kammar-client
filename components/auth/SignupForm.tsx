@@ -7,12 +7,13 @@ import NextLink from "next/link";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
 import { useSignUpMutation } from "@/services/auth/auth.services";
+import { useToast } from "@/contexts/ToastContext";
+import { setTokens } from "@/libs/general/token";
 
 const signUpSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -34,7 +35,9 @@ type SignUpFormData = z.infer<typeof signUpSchema>;
 
 function SignUpForm() {
   const [signUp, { isLoading }] = useSignUpMutation();
+
   const router = useRouter();
+  const { addToast } = useToast();
 
   const { isVisible, toggleVisibility } = usePasswordVisibility();
 
@@ -46,13 +49,13 @@ function SignUpForm() {
         confirmPassword: data.confirmPassword,
         username: data.username,
       }).unwrap();
-      const token = result.data as string;
 
-      Cookies.set("onboardingToken", token, { expires: 14 });
-
-      router.push(`/onboarding-user/${token}`);
-    } catch (err) {
-      // setError("Invalid credentials. Please try again.");
+      if (result.data?.accessToken && result.data.refreshToken) {
+        setTokens(result.data.accessToken, result.data.refreshToken);
+        router.push(`/onboarding-user`);
+      }
+    } catch (err: any) {
+      addToast("error", "Something went wrong", err.data.message);
     }
   };
 

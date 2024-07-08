@@ -5,13 +5,14 @@ import { Button, DateInput } from "@nextui-org/react";
 
 import CountrySelect from "@/components/countrySelect";
 import { countries } from "@/utils/constants";
+import { useAppSelector } from "@/store/store";
 
 interface Props {
   onStepChange: (stepIndex: number) => void;
 }
 
 function GetToknowForm({ onStepChange }: Props) {
-  const username = "Agatha";
+  const username = useAppSelector((state) => state.auth.username);
 
   const handleSubmit = () => {
     // Handle form submission
@@ -22,10 +23,7 @@ function GetToknowForm({ onStepChange }: Props) {
     //max-w-xs firstName, lastName, profilePicture, country, dateOfBirth
     <div className="flex flex-col gap-9">
       <div className="flex flex-col">
-        <h1
-          className="text-xl font-bold text-default-900 lg:text-3xl capitalize"
-          onClick={handleSubmit}
-        >
+        <h1 className="text-xl font-bold text-default-900 lg:text-3xl capitalize">
           Hello 👋 {username}
         </h1>
         <p className="text-small text-default-400 lg:text-medium">
