@@ -81,3 +81,13 @@ export interface ISignInPayload {
   email: string;
   password: string;
 }
+
+export interface IOnboard {
+  username: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+  country: string;
+  state: string;
+  dateOfBirth: Date;
+}

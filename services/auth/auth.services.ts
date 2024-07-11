@@ -1,5 +1,6 @@
 import {
   IAuthToken,
+  IOnboard,
   ISignInPayload,
   ISignUpPayload,
   IUser,
@@ -7,12 +8,14 @@ import {
 import { AppResponse } from "@/interface/RequestResponse";
 import { api } from "@/store/api";
 
+const PREFIX = "auth";
+
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
     signUp: build.mutation<AppResponse<IAuthToken>, ISignUpPayload>({
       query(body: ISignUpPayload) {
         return {
-          url: "auth/sign-up",
+          url: `${PREFIX}/sign-up`,
           method: "POST",
           body,
         };
@@ -23,18 +26,17 @@ export const authApi = api.injectEndpoints({
     signIn: build.mutation<AppResponse<IAuthToken>, ISignInPayload>({
       query(body: ISignInPayload) {
         return {
-          url: "auth/sign-in",
+          url: `${PREFIX}/sign-in`,
           method: "POST",
           body,
         };
       },
       invalidatesTags: ["Auth"],
     }),
-
     me: build.query<AppResponse<IUser>, string>({
       query(token: string) {
         return {
-          url: "auth/me",
+          url: `${PREFIX}/me`,
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -43,7 +45,22 @@ export const authApi = api.injectEndpoints({
       },
       providesTags: ["Auth"],
     }),
+    onboard: build.mutation<AppResponse<IUser>, IOnboard>({
+      query(body: IOnboard) {
+        return {
+          url: `${PREFIX}/onboard`,
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useMeQuery } = authApi;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useMeQuery,
+  useOnboardMutation,
+} = authApi;
