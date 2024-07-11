@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/general/navbar";
 import GuestRoute from "@/libs/hoc/GuestRoute";
 import { WithChildren } from "@/types";
 
