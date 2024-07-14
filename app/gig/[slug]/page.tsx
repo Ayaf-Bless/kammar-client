@@ -4,22 +4,23 @@ import {
   AccordionItem,
   Avatar,
   Badge,
-  Button,
   Card,
   CardBody,
   CardHeader,
+  CheckboxGroup,
   Chip,
+  Divider,
   Image,
   Link,
   RadioGroup,
 } from "@nextui-org/react";
 import NextLink from "next/link";
+import { Icon } from "@iconify/react";
 
 import HeadingOne from "@/components/general/headingOne";
-import HeadingTwo from "@/components/general/HeadingTwo";
 import Wrapper from "@/components/general/wrapper";
-import { Icon } from "@iconify/react";
 import PlanRadio from "@/components/gig/plan-radio";
+import PlanCheck from "@/components/gig/plan-check";
 
 const gigData = {
   _id: "6679b0b9b853321d1739d18d",
@@ -118,15 +119,14 @@ const gigData = {
       price: 15,
       isRecommended: false,
       deliveryUnit: "D",
-      extras: [
-        {
-          title: "Additional Design",
-          price: 5,
-          description: "Include an extra design in your package.",
-          _id: "6679b0b9b853321d1739d197",
-        },
-      ],
       _id: "6679b0b9b853321d1739d196",
+      whatsIncluded: [
+        "Professional and modern presentation design tailored to your brand identity",
+        "High-quality visuals and graphics that will grab attention and keep your audience engaged",
+        "Attention-grabbing layouts and transitions that will ensure a smooth and dynamic presentation experience",
+        "Clear and concise content organization that allows viewers to easily understand your key points",
+        "Unlimited revisions until you are completely satisfied with the final outcome", // Added element to list, Length: 298 characters
+      ],
     },
     {
       bargain: {
@@ -138,15 +138,14 @@ const gigData = {
       price: 30,
       isRecommended: true,
       deliveryUnit: "D",
-      extras: [
-        {
-          title: "Additional Revision",
-          price: 10,
-          description: "Include an extra revision in your package.",
-          _id: "6679b0b9b853321d1739d199",
-        },
-      ],
       _id: "6679b0b9b853321d1739d198",
+      whatsIncluded: [
+        "Professional and modern presentation design tailored to your brand identity",
+        "High-quality visuals and graphics that will grab attention and keep your audience engaged",
+        "Attention-grabbing layouts and transitions that will ensure a smooth and dynamic presentation experience",
+        "Clear and concise content organization that allows viewers to easily understand your key points",
+        "Unlimited revisions until you are completely satisfied with the final outcome", // Added element to list, Length: 298 characters
+      ],
     },
     {
       bargain: {
@@ -158,17 +157,22 @@ const gigData = {
       price: 50,
       isRecommended: false,
       deliveryUnit: "D",
-      extras: [
-        {
-          title: "Express Delivery",
-          price: 20,
-          description: "Receive your order within 24 hours.",
-          _id: "6679b0b9b853321d1739d19b",
-        },
-      ],
       _id: "6679b0b9b853321d1739d19a",
+      whatsIncluded: [
+        "Professional and modern presentation design tailored to your brand identity",
+        "High-quality visuals and graphics that will grab attention and keep your audience engaged",
+        "Attention-grabbing layouts and transitions that will ensure a smooth and dynamic presentation experience",
+        "Clear and concise content organization that allows viewers to easily understand your key points",
+        "Unlimited revisions until you are completely satisfied with the final outcome", // Added element to list, Length: 298 characters
+      ],
     },
   ],
+  ExpressPackage: {
+    title: "Express",
+    price: 20,
+    deliveryUnit: "D",
+    expectedDelivery: -2,
+  },
   isFlash: false,
   category: "6679a1e571d6be2b12512599",
   subCategory: {
@@ -327,26 +331,26 @@ function GitItem() {
                   </p>
                   <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                     <a
-                      href="#"
                       className="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                      href="#"
                     >
                       Make an order
                     </a>
                     <a
-                      href="#"
                       className="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg  focus:ring-4 focus:ring-gray-100 dark:text-default-200 dark:border-gray-600 dark:focus:ring-gray-600"
+                      href="#"
                     >
                       <svg
                         className="mr-2 -ml-1 w-5 h-5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
                         height="1em"
                         viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill="currentColor"
                           d="M3 20.59L6.59 17H18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2zM3 22H2V6a3 3 0 0 1 3-3h13a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H7zM6 7h11v1H6zm0 3h11v1H6zm0 3h8v1H6z"
-                        ></path>
+                          fill="currentColor"
+                        />
                       </svg>
                       Message me
                     </a>
@@ -408,62 +412,41 @@ function GitItem() {
                     classNames={{ wrapper: "gap-3" }}
                   >
                     {gigData.packages.map((pkg) => {
-                      if (pkg.isRecommended) {
-                        return (
-                          <Badge
-                            key={pkg._id}
-                            classNames={{
-                              badge:
-                                "z-10 bg-secondary-200 border-small text-secondary border-secondary-200 right-14 px-2 py-1",
-                            }}
-                            content={pkg.isRecommended ? "Recommended" : null}
-                            size="sm"
-                            variant="solid"
-                          >
-                            <PlanRadio
-                              description={pkg.extras
-                                .map((extra) => extra.description)
-                                .join(", ")}
-                              icon={
-                                <Icon
-                                  className="text-secondary"
-                                  icon="solar:box-minimalistic-linear"
-                                  width={18}
-                                />
-                              }
-                              label={pkg.title}
-                              monthlyPrice={pkg.price}
-                              value={pkg.title.toLowerCase().replace(" ", "-")}
-                              IsBargainable={pkg.bargain.enabled}
+                      return (
+                        <PlanRadio
+                          key={pkg._id}
+                          IsBargainable={pkg.bargain.enabled}
+                          deliveryUnit={pkg.deliveryUnit}
+                          expectedDelivery={pkg.expectedDelivery}
+                          icon={
+                            <Icon
+                              className="text-secondary"
+                              icon="solar:box-minimalistic-linear"
+                              width={18}
                             />
-                          </Badge>
-                        );
-                      } else {
-                        return (
-                          <PlanRadio
-                            key={pkg._id}
-                            description={pkg.extras
-                              .map((extra) => extra.description)
-                              .join(", ")}
-                            icon={
-                              <Icon
-                                className="text-secondary"
-                                icon="solar:box-minimalistic-linear"
-                                width={18}
-                              />
-                            }
-                            label={pkg.title}
-                            monthlyPrice={pkg.price}
-                            value={pkg.title.toLowerCase().replace(" ", "-")}
-                            IsBargainable={pkg.bargain.enabled}
-                          />
-                        );
-                      }
+                          }
+                          label={pkg.title}
+                          monthlyPrice={pkg.price}
+                          value={pkg.title.toLowerCase().replace(" ", "-")}
+                          whatsIncluded={pkg.whatsIncluded}
+                          isRecommanded={pkg.isRecommended}
+                        />
+                      );
                     })}
                   </RadioGroup>
-                  <p className="pl-1 pt-4 text-tiny text-default-400">
-                    Selected payment method can be changed at any time.
+                  <Divider className="my-4" />
+                  <p className="pl-3 mb-2 text-tiny text-default-400">
+                    Make {gigData.seller.username} work faster
                   </p>
+                  {gigData.ExpressPackage && (
+                    <PlanCheck
+                      deliveryUnit={gigData.ExpressPackage.deliveryUnit}
+                      price={gigData.ExpressPackage.price}
+                      expectedDelivery={gigData.ExpressPackage.expectedDelivery}
+                      label={gigData.ExpressPackage.title}
+                      value="express"
+                    />
+                  )}
                 </CardBody>
               </Card>
             </div>

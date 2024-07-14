@@ -3,42 +3,37 @@
 import type { RadioProps } from "@nextui-org/react";
 
 import React from "react";
-import { Accordion, AccordionItem, Chip, Radio } from "@nextui-org/react";
+import { Checkbox, CheckboxGroup } from "@nextui-org/react";
 
 import { cn } from "@/libs/general/cn";
 import { formatDeliveryTime } from "@/utils/formatDeliveryTime";
 
 export type PlanRadioProps = RadioProps & {
   icon?: React.ReactNode;
-  monthlyPrice?: number;
+  price: number;
   label?: string;
   IsBargainable?: boolean;
   deliveryUnit: string;
   expectedDelivery: number;
-  whatsIncluded?: string[];
-  isRecommanded?: boolean;
 };
 
-const PlanRadio = React.forwardRef<HTMLInputElement, PlanRadioProps>(
+const PlanCheck = React.forwardRef<HTMLInputElement, PlanRadioProps>(
   (
     {
       icon,
-      monthlyPrice,
+      price,
       label,
-      description,
       className,
       IsBargainable,
       deliveryUnit,
       expectedDelivery,
-      whatsIncluded,
-      isRecommanded,
       classNames = {},
       ...props
     },
     ref,
   ) => (
-    <>
-      <Radio
+    <CheckboxGroup>
+      <Checkbox
         {...props}
         ref={ref}
         classNames={{
@@ -54,9 +49,9 @@ const PlanRadio = React.forwardRef<HTMLInputElement, PlanRadioProps>(
             "group-data-[focus-visible=true]:ring-secondary",
             classNames?.wrapper,
           ),
-          labelWrapper: cn("ml-0", classNames?.labelWrapper),
         }}
         color="secondary"
+        radius="sm"
       >
         <div className="flex w-full items-center gap-3">
           <div className="item-center flex rounded-full bg-secondary-50 p-2 group-data-[selected=true]:bg-secondary-100">
@@ -66,48 +61,22 @@ const PlanRadio = React.forwardRef<HTMLInputElement, PlanRadioProps>(
             <div className="flex items-center gap-1">
               <p className="text-small">{label}</p>
               <span className="mt-0.5 text-tiny text-default-500">
-                {monthlyPrice !== undefined && ` $${monthlyPrice}`}
+                ${price}
               </span>
-              <span className="mt-0.5 text-tiny  text-secondary">
+              <span className="mt-0.5 text-tiny text-default-500 text-secondary">
                 {IsBargainable && "You can Bargain"}
               </span>
-              {isRecommanded && (
-                <Chip color="secondary" size="md">
-                  Recommended
-                </Chip>
-              )}
             </div>
             <p className="text-tiny text-default-400">
               {formatDeliveryTime(deliveryUnit, expectedDelivery)}
             </p>
           </div>
         </div>
-      </Radio>
-      {whatsIncluded && (
-        <Accordion isCompact className="m-0 p-0">
-          <AccordionItem
-            key={1}
-            aria-label="What's is Included"
-            title="What's is Included"
-          >
-            <ul className="space-y-2 pl-4">
-              {whatsIncluded.map((point, i) => (
-                <li
-                  key={i}
-                  className="text-default-600 flex items-center gap-3"
-                >
-                  <span className="h-2 w-2 rounded-lg bg-primary" />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </AccordionItem>
-        </Accordion>
-      )}
-    </>
+      </Checkbox>
+    </CheckboxGroup>
   ),
 );
 
-PlanRadio.displayName = "PlanRadio";
+PlanCheck.displayName = "PlanCheck";
 
-export default PlanRadio;
+export default PlanCheck;
