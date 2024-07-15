@@ -12,7 +12,6 @@ export type PlanRadioProps = RadioProps & {
   icon?: React.ReactNode;
   price: number;
   label?: string;
-  IsBargainable?: boolean;
   deliveryUnit: string;
   expectedDelivery: number;
 };
@@ -24,7 +23,6 @@ const PlanCheck = React.forwardRef<HTMLInputElement, PlanRadioProps>(
       price,
       label,
       className,
-      IsBargainable,
       deliveryUnit,
       expectedDelivery,
       classNames = {},
@@ -62,9 +60,6 @@ const PlanCheck = React.forwardRef<HTMLInputElement, PlanRadioProps>(
               <p className="text-small">{label}</p>
               <span className="mt-0.5 text-tiny text-default-500">
                 ${price}
-              </span>
-              <span className="mt-0.5 text-tiny text-default-500 text-secondary">
-                {IsBargainable && "You can Bargain"}
               </span>
             </div>
             <p className="text-tiny text-default-400">

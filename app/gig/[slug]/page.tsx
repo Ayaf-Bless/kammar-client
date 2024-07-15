@@ -3,11 +3,9 @@ import {
   Accordion,
   AccordionItem,
   Avatar,
-  Badge,
   Card,
   CardBody,
   CardHeader,
-  CheckboxGroup,
   Chip,
   Divider,
   Image,
@@ -398,8 +396,8 @@ function GitItem() {
               </section>
             </div>
 
-            <div className="md:w-1/3 w-full sticky">
-              <Card className="">
+            <div className="md:w-1/3 w-full">
+              <Card className="sticky top-4">
                 <CardHeader className="flex flex-col items-start px-6 pb-0 pt-5">
                   <h4 className="text-large font-medium">Select your plan</h4>
                   <p className="text-tiny text-default-400">
@@ -425,11 +423,11 @@ function GitItem() {
                               width={18}
                             />
                           }
+                          isRecommanded={pkg.isRecommended}
                           label={pkg.title}
                           monthlyPrice={pkg.price}
                           value={pkg.title.toLowerCase().replace(" ", "-")}
                           whatsIncluded={pkg.whatsIncluded}
-                          isRecommanded={pkg.isRecommended}
                         />
                       );
                     })}
@@ -441,9 +439,9 @@ function GitItem() {
                   {gigData.ExpressPackage && (
                     <PlanCheck
                       deliveryUnit={gigData.ExpressPackage.deliveryUnit}
-                      price={gigData.ExpressPackage.price}
                       expectedDelivery={gigData.ExpressPackage.expectedDelivery}
                       label={gigData.ExpressPackage.title}
+                      price={gigData.ExpressPackage.price}
                       value="express"
                     />
                   )}
