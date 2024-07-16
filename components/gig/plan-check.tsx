@@ -39,20 +39,20 @@ const PlanCheck = React.forwardRef<HTMLInputElement, PlanRadioProps>(
           base: cn(
             "inline-flex m-0 px-3 py-4 max-w-[100%] items-center justify-between",
             "flex-row-reverse w-full cursor-pointer rounded-sm 3 border-medium border-default-100",
-            "data-[selected=true]:border-secondary data-[selected=true]:bg-secondary-50",
+            "data-[selected=true]:border-primary data-[selected=true]:bg-secondary-50",
             classNames?.base,
             className,
           ),
           wrapper: cn(
-            "group-data-[focus-visible=true]:ring-secondary",
+            "group-data-[focus-visible=true]:ring-primary rounded-lg",
             classNames?.wrapper,
           ),
         }}
-        color="secondary"
+        color="primary"
         radius="sm"
       >
         <div className="flex w-full items-center gap-3">
-          <div className="item-center flex rounded-full bg-secondary-50 p-2 group-data-[selected=true]:bg-secondary-100">
+          <div className="item-center flex rounded-full bg-primary-50 p-2 group-data-[selected=true]:bg-primary-100">
             {icon}
           </div>
           <div className="flex w-full flex-col gap-1">

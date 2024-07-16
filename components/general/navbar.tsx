@@ -47,13 +47,13 @@ export default function Navbar() {
         <NavbarMenuToggle className="mr-2 h-6 sm:hidden" />
         <Logo />
         <NavbarItem className="hidden lg:flex ml-2">
-          <Dropdown radius="none">
+          <Dropdown radius="sm">
             <NavbarItem>
               <DropdownTrigger>
                 <Button
                   disableRipple
                   className="py-2 bg-transparent data-[hover=true]:bg-transparent"
-                  radius="none"
+                  radius="sm"
                   variant="bordered"
                 >
                   Categories
@@ -95,7 +95,7 @@ export default function Navbar() {
               inputWrapper: "bg-content2 dark:bg-content1",
             }}
             placeholder="Search..."
-            radius="full"
+            radius="sm"
             startContent={
               <Icon
                 className="text-default-500"
@@ -108,7 +108,7 @@ export default function Navbar() {
         </NavbarItem>
         {/* Mobile search */}
         <NavbarItem className="lg:hidden">
-          <Button isIconOnly radius="full" variant="light">
+          <Button isIconOnly radius="sm" variant="light">
             <Icon
               className="text-default-500"
               icon="solar:magnifer-linear"
@@ -211,7 +211,7 @@ export default function Navbar() {
                   // className="text-primary"
                   // color="primary"
                   href="/signup"
-                  radius="none"
+                  radius="sm"
                   variant="bordered"
                 >
                   Sign Up
@@ -224,7 +224,7 @@ export default function Navbar() {
                   // className="text-primary"
                   // color="primary"
                   href="/signin"
-                  radius="none"
+                  radius="sm"
                   variant="bordered"
                 >
                   Sign In
@@ -240,7 +240,7 @@ export default function Navbar() {
             className="dark:text-white light:text-primary border"
             color="primary"
             href="/become_seller"
-            radius="none"
+            radius="sm"
             variant="bordered"
           >
             <span>Become a seller</span>

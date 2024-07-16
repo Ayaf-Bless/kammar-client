@@ -35,8 +35,8 @@ export default function HeroSection() {
         </div>
         <div className="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5">
           <div className="text-center flex flex-col items-center space-y-10">
-            <span className="border border-gray-500 px-3 py-0.5 rounded-full bg-gray-50 dark:bg-gray-950 bg-opacity-50 text-default-700 dark:text-gray-300">
-              Creativity in mind
+            <span className="border border-gray-500 px-3 py-0.5 rounded-sm bg-gray-50 dark:bg-gray-950 bg-opacity-50 text-default-700 dark:text-gray-300">
+              Driven by Fresh Ideas
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl/tight xl:text-7xl/tight text-gray-900 dark:text-white font-bold max-w-4xl capitalize">
               Same dynamics as in real life,
@@ -57,7 +57,7 @@ export default function HeroSection() {
                 className="bg-primary text-white border px-8 h-12"
                 color="primary"
                 href="/become_seller"
-                radius="full"
+                radius="sm"
                 variant="bordered"
               >
                 <span>Explore gigs</span>

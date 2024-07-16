@@ -3,22 +3,16 @@ import {
   Accordion,
   AccordionItem,
   Avatar,
-  Card,
-  CardBody,
-  CardHeader,
   Chip,
-  Divider,
   Image,
   Link,
-  RadioGroup,
 } from "@nextui-org/react";
 import NextLink from "next/link";
 import { Icon } from "@iconify/react";
 
 import HeadingOne from "@/components/general/headingOne";
 import Wrapper from "@/components/general/wrapper";
-import PlanRadio from "@/components/gig/plan-radio";
-import PlanCheck from "@/components/gig/plan-check";
+import PackageCard from "@/components/gig/package-card";
 
 const gigData = {
   _id: "6679b0b9b853321d1739d18d",
@@ -137,13 +131,6 @@ const gigData = {
       isRecommended: true,
       deliveryUnit: "D",
       _id: "6679b0b9b853321d1739d198",
-      whatsIncluded: [
-        "Professional and modern presentation design tailored to your brand identity",
-        "High-quality visuals and graphics that will grab attention and keep your audience engaged",
-        "Attention-grabbing layouts and transitions that will ensure a smooth and dynamic presentation experience",
-        "Clear and concise content organization that allows viewers to easily understand your key points",
-        "Unlimited revisions until you are completely satisfied with the final outcome", // Added element to list, Length: 298 characters
-      ],
     },
     {
       bargain: {
@@ -210,7 +197,7 @@ function GitItem() {
                 <HeadingOne>{gigData.title}</HeadingOne>
               </div>
               {/* Images */}
-              <div className="overflow-hidden rounded-sm w-full flex flex-col gap-3">
+              {/* <div className="overflow-hidden rounded-sm w-full flex flex-col gap-3">
                 <Image
                   alt="Two each of gray, white, and black shirts laying flat."
                   className="w-full object-cover object-center"
@@ -219,13 +206,110 @@ function GitItem() {
                 <div>
                   <p className="text-default-600">{gigData.shortDescription}</p>
                 </div>
-                <div className="flex gap-2">
-                  {gigData.tags.map((tag, i) => (
-                    <Chip key={i} className="capitalize" color="default">
-                      {tag}
-                    </Chip>
-                  ))}
+                */}
+
+              <div
+                id="default-carousel"
+                className="relative w-full"
+                data-carousel="slide"
+              >
+                <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+                  <div
+                    className="hidden duration-700 ease-in-out"
+                    data-carousel-item
+                  >
+                    <Image
+                      alt="Two each of gray, white, and black shirts laying flat."
+                      className="w-full object-cover object-center"
+                      src="/2.jpeg"
+                    />
+                  </div>
+
+                  <div
+                    className="hidden duration-700 ease-in-out"
+                    data-carousel-item
+                  >
+                    <Image
+                      alt="Two each of gray, white, and black shirts laying flat."
+                      className="w-full object-cover object-center"
+                      src="/2.jpeg"
+                    />
+                  </div>
                 </div>
+
+                <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                  <button
+                    type="button"
+                    className="w-3 h-3 rounded-full"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                    data-carousel-slide-to="0"
+                  ></button>
+                  <button
+                    type="button"
+                    className="w-3 h-3 rounded-full"
+                    aria-current="false"
+                    aria-label="Slide 2"
+                    data-carousel-slide-to="1"
+                  ></button>
+                </div>
+
+                <button
+                  type="button"
+                  className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  data-carousel-prev
+                >
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg
+                      className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 1 1 5l4 4"
+                      />
+                    </svg>
+                    <span className="sr-only">Previous</span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  data-carousel-next
+                >
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg
+                      className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 9 4-4-4-4"
+                      />
+                    </svg>
+                    <span className="sr-only">Next</span>
+                  </span>
+                </button>
+              </div>
+
+              <div className="flex gap-2">
+                {gigData.tags.map((tag, i) => (
+                  <Chip key={i} className="capitalize" color="default">
+                    {tag}
+                  </Chip>
+                ))}
               </div>
               {/* seller */}
               <div>
@@ -381,7 +465,7 @@ function GitItem() {
                         key={i}
                         indicator={
                           <Icon
-                            className="text-secondary"
+                            className="text-primary"
                             icon="lucide:plus"
                             width={24}
                           />
@@ -397,56 +481,11 @@ function GitItem() {
             </div>
 
             <div className="md:w-1/3 w-full">
-              <Card className="sticky top-4">
-                <CardHeader className="flex flex-col items-start px-6 pb-0 pt-5">
-                  <h4 className="text-large font-medium">Select your plan</h4>
-                  <p className="text-tiny text-default-400">
-                    Find a package that&apos;s right for your need
-                  </p>
-                </CardHeader>
-                <CardBody>
-                  <RadioGroup
-                    aria-label="packages"
-                    classNames={{ wrapper: "gap-3" }}
-                  >
-                    {gigData.packages.map((pkg) => {
-                      return (
-                        <PlanRadio
-                          key={pkg._id}
-                          IsBargainable={pkg.bargain.enabled}
-                          deliveryUnit={pkg.deliveryUnit}
-                          expectedDelivery={pkg.expectedDelivery}
-                          icon={
-                            <Icon
-                              className="text-secondary"
-                              icon="solar:box-minimalistic-linear"
-                              width={18}
-                            />
-                          }
-                          isRecommanded={pkg.isRecommended}
-                          label={pkg.title}
-                          monthlyPrice={pkg.price}
-                          value={pkg.title.toLowerCase().replace(" ", "-")}
-                          whatsIncluded={pkg.whatsIncluded}
-                        />
-                      );
-                    })}
-                  </RadioGroup>
-                  <Divider className="my-4" />
-                  <p className="pl-3 mb-2 text-tiny text-default-400">
-                    Make {gigData.seller.username} work faster
-                  </p>
-                  {gigData.ExpressPackage && (
-                    <PlanCheck
-                      deliveryUnit={gigData.ExpressPackage.deliveryUnit}
-                      expectedDelivery={gigData.ExpressPackage.expectedDelivery}
-                      label={gigData.ExpressPackage.title}
-                      price={gigData.ExpressPackage.price}
-                      value="express"
-                    />
-                  )}
-                </CardBody>
-              </Card>
+              <PackageCard
+                expressPackage={gigData.ExpressPackage}
+                packages={gigData.packages}
+                username={gigData.seller.username}
+              />
             </div>
           </div>
         </div>

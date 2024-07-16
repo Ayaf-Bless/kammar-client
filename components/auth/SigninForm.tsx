@@ -85,7 +85,7 @@ function SigninForm() {
             isRequired
             label="Email Address"
             placeholder="Enter your email"
-            radius="none"
+            radius="sm"
             required={true}
             type="email"
             variant="bordered"
@@ -112,7 +112,7 @@ function SigninForm() {
             }
             label="Password"
             placeholder="Enter your password"
-            radius="none"
+            radius="sm"
             required={true}
             type={isVisible ? "text" : "password"}
             variant="bordered"
@@ -128,7 +128,7 @@ function SigninForm() {
           <Button
             color="primary"
             isLoading={isLoading}
-            radius="none"
+            radius="sm"
             type="submit"
           >
             Sign In
@@ -144,7 +144,7 @@ function SigninForm() {
 
         <div className="flex w-full flex-col gap-2">
           <Button
-            radius="none"
+            radius="sm"
             startContent={<Icon icon="flat-color-icons:google" width={24} />}
             variant="bordered"
           >

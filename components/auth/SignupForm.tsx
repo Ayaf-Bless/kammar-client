@@ -86,7 +86,7 @@ function SignUpForm() {
             required
             label="Email Address"
             placeholder="Enter your email"
-            radius="none"
+            radius="sm"
             {...register("email")}
             errorMessage={errors.email?.message}
             isInvalid={errors.email ? true : false}
@@ -98,7 +98,7 @@ function SignUpForm() {
             required
             label="Username"
             placeholder="Enter your username"
-            radius="none"
+            radius="sm"
             {...register("username")}
             errorMessage={errors.username?.message}
             isInvalid={errors.username ? true : false}
@@ -128,7 +128,7 @@ function SignUpForm() {
             errorMessage={errors.password?.message}
             isInvalid={errors.password ? true : false}
             placeholder="Create a password"
-            radius="none"
+            radius="sm"
             type={isVisible ? "text" : "password"}
             variant="bordered"
           />
@@ -155,7 +155,7 @@ function SignUpForm() {
             errorMessage={errors.confirmPassword?.message}
             isInvalid={errors.confirmPassword ? true : false}
             placeholder="Confirm your password"
-            radius="none"
+            radius="sm"
             type={isVisible ? "text" : "password"}
             variant="bordered"
           />
@@ -165,7 +165,7 @@ function SignUpForm() {
             className="py-4"
             {...register("agreeToTerms")}
             isInvalid={errors.agreeToTerms ? true : false}
-            radius="none"
+            radius="sm"
             size="sm"
           >
             I agree with the&nbsp;
@@ -180,7 +180,7 @@ function SignUpForm() {
           <Button
             color="primary"
             isLoading={isLoading}
-            radius="none"
+            radius="sm"
             type="submit"
           >
             Sign Up
@@ -194,7 +194,7 @@ function SignUpForm() {
 
         <div className="flex w-full flex-col gap-2">
           <Button
-            radius="none"
+            radius="sm"
             startContent={<Icon icon="flat-color-icons:google" width={24} />}
             variant="bordered"
           >
