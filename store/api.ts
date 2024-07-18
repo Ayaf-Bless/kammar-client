@@ -1,3 +1,4 @@
+import { getAccessToken, getRefreshToken } from "@/libs/general/token";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import {
   BaseQueryFn,
@@ -14,6 +15,12 @@ const baseQuery = fetchBaseQuery({
     headers.set("Content-Type", "application/json");
     headers.set("accept", "application/json");
 
+    const token = getAccessToken();
+
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+
     return headers;
   },
   credentials: "include",
@@ -27,7 +34,7 @@ const baseQueryWithReAuth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     // get the refreshToken from cookie
-    const refreshToken = "";
+    const refreshToken = getRefreshToken();
 
     await baseQuery(
       {

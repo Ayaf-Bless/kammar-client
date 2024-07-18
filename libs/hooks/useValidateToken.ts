@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { getAccessToken } from "../general/token";
-
 import { useMeQuery } from "@/services/auth/auth.services";
 import {
   addAuthUser,
@@ -12,12 +10,9 @@ import { IUser } from "@/interface/auth/auth.interface";
 
 export const useValidateToken = () => {
   const [isValid, setIsValid] = useState<boolean | null>(null);
-  const accessToken = getAccessToken();
   const dispatch = useAppDispatch();
 
-  const { data, error, isLoading } = useMeQuery(accessToken as string, {
-    skip: !accessToken,
-  });
+  const { data, error, isLoading } = useMeQuery();
 
   useEffect(() => {
     if (data && data.data) {

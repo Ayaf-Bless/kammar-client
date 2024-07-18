@@ -1,19 +1,14 @@
 import { useEffect } from "react";
 
-import { getAccessToken } from "../general/token";
-
 import { useMeQuery } from "@/services/auth/auth.services";
 import { addAuthUser } from "@/services/auth/reducers/auth.reducers";
 import { IUser } from "@/interface/auth/auth.interface";
 import { useAppDispatch } from "@/store/store";
 
 export const useAuthUser = () => {
-  const accessToken = getAccessToken();
   const dispatch = useAppDispatch();
 
-  const { data, error, isLoading } = useMeQuery(accessToken as string, {
-    skip: !accessToken,
-  });
+  const { data, error, isLoading } = useMeQuery();
 
   useEffect(() => {
     if (data && data.data) {

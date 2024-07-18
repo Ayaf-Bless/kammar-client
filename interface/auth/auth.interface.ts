@@ -91,3 +91,14 @@ export interface IOnboard {
   state: string;
   dateOfBirth: Date;
 }
+
+export interface IChangePassword {
+  currentPassword: string;
+  newPassword: string;
+}
+
+export interface IResetPassword {
+  newPassword: string;
+  confirmPassword: string;
+  resetToken: string;
+}
