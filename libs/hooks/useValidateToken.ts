@@ -17,7 +17,6 @@ export const useValidateToken = () => {
   useEffect(() => {
     if (data && data.data) {
       dispatch(addAuthUser({ authInfo: data.data as IUser }));
-      console.log("dispatch");
 
       setIsValid(true);
     } else if (!isLoading && (error || !data)) {

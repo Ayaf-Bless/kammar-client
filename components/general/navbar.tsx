@@ -1,292 +1,261 @@
-"use client";
-
-import React from "react";
+import Link from "next/link";
+import { Fragment, useState } from "react";
 import {
-  Navbar as NextUINav,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Link,
-  Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Input,
+  Dialog,
+  DialogPanel,
   Popover,
-  PopoverTrigger,
-  Badge,
-  PopoverContent,
-  Avatar,
-} from "@nextui-org/react";
-import { Icon } from "@iconify/react";
+  PopoverButton,
+  PopoverGroup,
+  PopoverPanel,
+  TabGroup,
+  TabPanel,
+  TabPanels,
+  Transition,
+  TransitionChild,
+} from "@headlessui/react";
+import {
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  XMarkIcon,
+  HeartIcon,
+} from "@heroicons/react/24/outline";
 
 import Logo from "../logo/Logo";
-import { ThemeSwitch } from "../theme-switch";
-import NotificationsCard from "../notification/notifications-card";
 
-import { useCurrentUser } from "@/libs/hooks/useCurrentUser";
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
+}
 
-export default function Navbar() {
-  const currentUser = useCurrentUser();
+export default function Example() {
+  const [open, setOpen] = useState(false);
 
   return (
-    <NextUINav
-      isBordered
-      classNames={{
-        item: "data-[active=true]:text-primary",
-        wrapper: "px-4 sm:px-6 w-full max-w-[90%] container",
-      }}
-      height="64px"
-      position="static"
-    >
-      <NavbarBrand>
-        <NavbarMenuToggle className="mr-2 h-6 sm:hidden" />
-        <Logo />
-        <NavbarItem className="hidden lg:flex ml-2">
-          <Dropdown radius="sm">
-            <NavbarItem>
-              <DropdownTrigger>
-                <Button
-                  disableRipple
-                  className="py-2 bg-transparent data-[hover=true]:bg-transparent"
-                  radius="sm"
-                  variant="bordered"
-                >
-                  Categories
-                </Button>
-              </DropdownTrigger>
-            </NavbarItem>
-            <DropdownMenu
-              aria-label="category"
-              className="w-full"
-              itemClasses={{
-                base: "gap-4",
-              }}
-            >
-              <DropdownItem key="autoscaling">
-                <h1>Heee</h1>
-              </DropdownItem>
-              <DropdownItem key="usage_metrics">Usage Metrics</DropdownItem>
-              <DropdownItem key="production_ready">
-                Production Ready
-              </DropdownItem>
-              <DropdownItem key="99_uptime">+99% Uptime</DropdownItem>
-              <DropdownItem key="supreme_support">
-                +Supreme Support
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavbarItem>
-      </NavbarBrand>
-
-      {/* Right Menu */}
-      <NavbarContent
-        className="ml-auto h-12 max-w-fit items-center gap-0"
-        justify="end"
-      >
-        <NavbarItem className="mr-2 hidden lg:flex">
-          <Input
-            aria-label="Search"
-            classNames={{
-              inputWrapper: "bg-content2 dark:bg-content1",
-            }}
-            placeholder="Search..."
-            radius="sm"
-            startContent={
-              <Icon
-                className="text-default-500"
-                icon="solar:magnifer-linear"
-                width={20}
-              />
-            }
-            variant="bordered"
-          />
-        </NavbarItem>
-        {/* Mobile search */}
-        <NavbarItem className="lg:hidden">
-          <Button isIconOnly radius="sm" variant="light">
-            <Icon
-              className="text-default-500"
-              icon="solar:magnifer-linear"
-              width={20}
-            />
-          </Button>
-        </NavbarItem>
-        {/* Theme change */}
-        <NavbarItem className="hidden lg:flex">
-          <ThemeSwitch />
-        </NavbarItem>
-
-        {currentUser ? (
-          <>
-            <NavbarItem className="hidden lg:flex">
-              <Button isIconOnly radius="full" variant="light">
-                <Icon
-                  className="text-default-500"
-                  icon="solar:settings-linear"
-                  width={24}
-                />
-              </Button>
-            </NavbarItem>
-
-            <NavbarItem className="flex">
-              <Popover offset={12} placement="bottom-end">
-                <PopoverTrigger>
-                  <Button
-                    disableRipple
-                    isIconOnly
-                    className="overflow-visible"
-                    radius="full"
-                    variant="light"
-                  >
-                    <Badge
-                      className="bg-primary"
-                      content="5"
-                      showOutline={false}
-                      size="md"
-                    >
-                      <Icon
-                        className="text-default-500"
-                        icon="solar:bell-linear"
-                        width={22}
-                      />
-                    </Badge>
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="max-w-[90vw] p-0 sm:max-w-[380px]">
-                  <NotificationsCard className="w-full shadow-none" />
-                </PopoverContent>
-              </Popover>
-            </NavbarItem>
-
-            <NavbarItem className="px-2">
-              <Dropdown placement="bottom-end">
-                <DropdownTrigger>
-                  <button className="mt-1 h-8 w-8 transition-transform">
-                    <Badge
-                      className="bg-primary"
-                      content=""
-                      placement="bottom-right"
-                      shape="circle"
-                    >
-                      <Avatar
-                        size="sm"
-                        src="https://i.pravatar.cc/150?u=a04258114e29526708c"
-                      />
-                    </Badge>
-                  </button>
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Profile Actions" variant="flat">
-                  <DropdownItem key="profile" className="h-14 gap-2">
-                    <p className="font-semibold">Signed in as</p>
-                    <p className="font-semibold">johndoe@example.com</p>
-                  </DropdownItem>
-                  <DropdownItem key="settings">My Settings</DropdownItem>
-                  <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                  <DropdownItem key="analytics">Analytics</DropdownItem>
-                  <DropdownItem key="system">System</DropdownItem>
-                  <DropdownItem key="configurations">
-                    Configurations
-                  </DropdownItem>
-                  <DropdownItem key="help_and_feedback">
-                    Help & Feedback
-                  </DropdownItem>
-                  <DropdownItem key="logout" color="danger">
-                    Log Out
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </NavbarItem>
-          </>
-        ) : (
-          <>
-            <div className="flex flex-row gap-2 mx-2">
-              <NavbarItem>
-                <Button
-                  as={Link}
-                  // className="text-primary"
-                  // color="primary"
-                  href="/signup"
-                  radius="sm"
-                  variant="bordered"
-                >
-                  Sign Up
-                </Button>
-              </NavbarItem>
-
-              <NavbarItem>
-                <Button
-                  as={Link}
-                  // className="text-primary"
-                  // color="primary"
-                  href="/signin"
-                  radius="sm"
-                  variant="bordered"
-                >
-                  Sign In
-                </Button>
-              </NavbarItem>
-            </div>
-          </>
-        )}
-
-        <NavbarItem>
-          <Button
-            as={Link}
-            className="dark:text-white light:text-primary border"
-            color="primary"
-            href="/become_seller"
-            radius="sm"
-            variant="bordered"
+    <div className="bg-inherit">
+      {/* Mobile menu */}
+      <Transition show={open}>
+        <Dialog className="relative z-40 lg:hidden" onClose={setOpen}>
+          <TransitionChild
+            enter="transition-opacity ease-linear duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity ease-linear duration-300"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            <span>Become a seller</span>
-            <svg
-              height="1em"
-              viewBox="0 0 28 28"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778z"
-                fill="currentColor"
-              />
-            </svg>
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </TransitionChild>
 
-      {/* Mobile Menu */}
-      <NavbarMenu>
-        <NavbarMenuItem>
-          <Link className="w-full" color="foreground" href="#">
-            Dashboard
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem isActive>
-          <Link aria-current="page" className="w-full" color="primary" href="#">
-            Deployments
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link className="w-full" color="foreground" href="#">
-            Analytics
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link className="w-full" color="foreground" href="#">
-            Team
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link className="w-full" color="foreground" href="#">
-            Settings
-          </Link>
-        </NavbarMenuItem>
-      </NavbarMenu>
-    </NextUINav>
+          <div className="fixed inset-0  z-40 flex">
+            <TransitionChild
+              enter="transition ease-in-out duration-300 transform"
+              enterFrom="-translate-x-full"
+              enterTo="translate-x-0"
+              leave="transition ease-in-out duration-300 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="-translate-x-full"
+            >
+              <DialogPanel className="relative  dark:bg-black bg-white flex w-full max-w-xs flex-col overflow-y-auto  pb-12 shadow-xl">
+                <div className="flex px-4 pb-2 pt-5">
+                  <button
+                    className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-default-700"
+                    type="button"
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className="absolute -inset-0.5" />
+                    <span className="sr-only">Close menu</span>
+                    <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                  </button>
+                </div>
+
+                {/* Links */}
+                <TabGroup className="mt-2">
+                  <div className="border-b border-default-400">
+                    <div className="-mb-px flex space-x-8 px-4">Menu</div>
+                  </div>
+                  <TabPanels as={Fragment}>
+                    <TabPanel className="space-y-10 px-4 pb-8 pt-10">
+                      <div>
+                        <p className="font-medium ">Category</p>
+                        <ul
+                          aria-labelledby={`-heading-mobile`}
+                          className="mt-6 flex flex-col space-y-6"
+                        >
+                          <li className="flow-root">
+                            <Link
+                              className="-m-2 block p-2 text-gray-500"
+                              href="#"
+                            >
+                              Category Item
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </TabPanel>
+                  </TabPanels>
+                </TabGroup>
+
+                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                  <div className="flow-root">
+                    <Link
+                      className="-m-2 block p-2 font-medium text-gray-900"
+                      href="#"
+                    >
+                      Sign in
+                    </Link>
+                  </div>
+                  <div className="flow-root">
+                    <Link
+                      className="-m-2 block p-2 font-medium text-gray-900"
+                      href="#"
+                    >
+                      Create account
+                    </Link>
+                  </div>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
+        </Dialog>
+      </Transition>
+
+      <header className="relative dark:bg-black">
+        <nav
+          aria-label="Top"
+          className="mx-auto max-w-[90%] px-4 sm:px-6 lg:px-8"
+        >
+          <div className="border-b border-default-200 ">
+            <div className="flex h-16 items-center">
+              <button
+                className="relative rounded-md bg-white dark:bg-black p-2 text-gray-400 lg:hidden"
+                type="button"
+                onClick={() => setOpen(true)}
+              >
+                <span className="absolute -inset-0.5" />
+                <span className="sr-only">Open menu</span>
+                <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+              </button>
+
+              {/* Logo */}
+              <div className="ml-4 flex lg:ml-0">
+                <Logo />
+              </div>
+
+              {/* Flyout menus */}
+              <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch">
+                <div className="flex h-full space-x-8">
+                  <Popover className="flex">
+                    {({ open }) => (
+                      <>
+                        <div className="relative flex">
+                          <PopoverButton
+                            className={classNames(
+                              open
+                                ? "border-primary-500 text-primary-500"
+                                : "border-transparent hover:text-default-700",
+                              "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out",
+                            )}
+                          >
+                            Categories
+                          </PopoverButton>
+                        </div>
+
+                        <Transition
+                          enter="transition ease-out duration-200"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="transition ease-in duration-150"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <PopoverPanel className="absolute z-10 inset-x-0 top-full text-sm text-gray-500">
+                            <div className="relative bg-white dark:bg-black dark:text-default-500 ">
+                              <div className="mx-auto max-w-7xl px-8">
+                                <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
+                                  {/* In case I want to add images */}
+                                  {/* <div className="col-start-2 grid grid-cols-2 gap-x-8"></div> */}
+                                  <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                                    <div>
+                                      <p
+                                        className="font-medium text-gray-900  dark:text-default-700 "
+                                        id={`heading`}
+                                      >
+                                        category
+                                      </p>
+                                      <ul
+                                        aria-labelledby={`-heading`}
+                                        className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                      >
+                                        <li className="flex">
+                                          <Link className="" href="#">
+                                            name
+                                          </Link>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </PopoverPanel>
+                        </Transition>
+                      </>
+                    )}
+                  </Popover>
+                </div>
+              </PopoverGroup>
+
+              <div className="ml-auto flex items-center">
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link
+                    className="text-sm font-medium  hover:text-gray-800"
+                    href="/signin"
+                  >
+                    Sign in
+                  </Link>
+                  <span
+                    aria-hidden="true"
+                    className="h-6 w-px bg-default-200"
+                  />
+                  <Link
+                    className="text-sm font-medium  hover:text-gray-800"
+                    href="/signup"
+                  >
+                    Create account
+                  </Link>
+                </div>
+
+                {/* Search */}
+                <div className="flex lg:ml-6">
+                  <Link
+                    className="p-2 text-default-500 hover:text-default-700"
+                    href="#"
+                  >
+                    <span className="sr-only">Search</span>
+                    <MagnifyingGlassIcon
+                      aria-hidden="true"
+                      className="h-6 w-6"
+                    />
+                  </Link>
+                </div>
+
+                {/* Cart */}
+                <div className="ml-4 flow-root lg:ml-6">
+                  <Link className="group -m-2 flex items-center p-2" href="#">
+                    <HeartIcon
+                      aria-hidden="true"
+                      className="h-6 w-6 flex-shrink-0 text-default-500 group-hover:text-default-700"
+                    />
+                    <span className="ml-2 text-sm font-medium text-default-400 group-hover:text-default-700">
+                      0
+                    </span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
   );
 }

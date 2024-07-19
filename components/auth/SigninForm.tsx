@@ -13,6 +13,7 @@ import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
 import { useSignInMutation } from "@/services/auth/auth.services";
 import { setTokens } from "@/libs/general/token";
+import { useToast } from "@/contexts/ToastContext";
 
 const signInSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -28,6 +29,7 @@ function SigninForm() {
   const [signIn, { isLoading }] = useSignInMutation();
   const { isVisible, toggleVisibility } = usePasswordVisibility();
   const router = useRouter();
+  const { addToast } = useToast();
 
   const [error, setError] = useState<string | null>(null);
 
@@ -44,19 +46,12 @@ function SigninForm() {
         setTokens(result.data.accessToken, result.data.refreshToken);
         router.push(`/`);
       }
-
-      // redirect("/");
-      // const response = useSignInMutation({})
-      // if (response.ok && response.data) {
-      //   setCookies(
-      //     response.data.accessToken,
-      //     response.data.refreshToken,
-      //     data.remember,
-      //   );
-      // }
-      // Handle successful sign-in (e.g., redirect to a protected page)
     } catch (err) {
-      setError("Invalid credentials. Please try again.");
+      addToast(
+        "error",
+        "Something went wrong",
+        "Invalid credentials. Please try again.",
+      );
     }
   };
   const {

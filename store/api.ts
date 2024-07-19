@@ -1,4 +1,3 @@
-import { getAccessToken, getRefreshToken } from "@/libs/general/token";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import {
   BaseQueryFn,
@@ -6,6 +5,8 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
+
+import { getAccessToken, getRefreshToken } from "@/libs/general/token";
 
 const BASE_ENDPOINT = "http://localhost:3000";
 
@@ -18,7 +19,7 @@ const baseQuery = fetchBaseQuery({
     const token = getAccessToken();
 
     if (token) {
-      headers.set("Authorization", `Bearer ${token}`);
+      headers.set("authorization", `Bearer ${token}`);
     }
 
     return headers;

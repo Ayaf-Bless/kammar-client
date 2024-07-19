@@ -1,82 +1,153 @@
 "use client";
 
-import { Button, Link } from "@nextui-org/react";
+import { Image, Link } from "@nextui-org/react";
 import NextLink from "next/link";
+import NextImage from "next/image";
+
 import Navbar from "../general/navbar";
+import Wrapper from "../general/wrapper";
 
 export default function HeroSection() {
   return (
     <>
       <Navbar />
-      <section className="bg-gray-100 dark:bg-gray-900 py-32 sm:py-36 lg:py-40 overflow-hidden min-h-max flex items-center relative">
-        <div
-          className="absolute top-0 left-0 -translate-x-[54%] -translate-y-[70%] w-2/5 rounded-full aspect-square bg-primary-400
-  backdrop-filter blur-3xl opacity-50"
-        />
-        <div
-          className="absolute bottom-0 right-0 translate-x-[54%] translate-y-[70%] w-2/5 rounded-full aspect-square bg-primary-300
-  backdrop-filter blur-3xl opacity-50"
-        />
-        <div
-          className="absolute min-w-[300px] w-[48%] md:w-2/5 aspect-square rounded-full bg-gradient-to-r from-primary-200 right-0
-  -translate-y-[40%] translate-x-[40%] top-0"
-        >
-          <div className="inset-[10%] rounded-full bg-gradient-to-l from-primary-700">
-            <div className="absolute inset-[20%] rounded-full bg-gradient-to-l from-primary-500" />
-          </div>
-        </div>
-        <div
-          className="absolute min-w-[300px] w-[48%] md:w-2/5 aspect-square rounded-full bg-gradient-to-l from-primary-200 left-0
-  translate-y-[40%] -translate-x-[40%] bottom-0"
-        >
-          <div className="inset-[10%] rounded-full bg-gradient-to-r from-primary-600">
-            <div className="absolute inset-[20%] rounded-full bg-gradient-to-r from-primary-200" />
-          </div>
-        </div>
-        <div className="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5">
-          <div className="text-center flex flex-col items-center space-y-10">
-            <span className="border border-gray-500 px-3 py-0.5 rounded-sm bg-gray-50 dark:bg-gray-950 bg-opacity-50 text-default-700 dark:text-gray-300">
-              Driven by Fresh Ideas
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl/tight xl:text-7xl/tight text-gray-900 dark:text-white font-bold max-w-4xl capitalize">
-              Same dynamics as in real life,
-              <em className="text-primary"> but safer</em>
-            </h1>
-            <p className="text-base text-gray-700 dark:text-gray-300 text-center max-w-[70%]">
-              Kammar ensures that every transaction mimics the authenticity of
-              real-life interactions while prioritizing your security. Whether
-              you&apos;re a buyer seeking quality services or a seller looking
-              to expand your clientele, we provide a seamless and trustworthy
-              environment for all your needs. With advanced safety measures and
-              user-friendly features, enjoy peace of mind as you engage in a
-              dynamic marketplace.
-            </p>
-            <div className="flex justify-center">
-              <Button
-                as={Link}
-                className="bg-primary text-white border px-8 h-12"
-                color="primary"
-                href="/become_seller"
-                radius="sm"
-                variant="bordered"
-              >
-                <span>Explore gigs</span>
-                <svg
-                  height="1em"
-                  viewBox="0 0 28 28"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
+      <Wrapper>
+        <section>
+          <div className="relative isolate">
+            <svg
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 dark:stroke-default-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
+            >
+              <defs>
+                <pattern
+                  height={200}
+                  id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84"
+                  patternUnits="userSpaceOnUse"
+                  width={200}
+                  x="50%"
+                  y={-1}
                 >
-                  <path
-                    d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </Button>
+                  <path d="M.5 200V.5H200" fill="none" />
+                </pattern>
+              </defs>
+              <svg
+                className="overflow-visible fill-gray-50 dark:fill-default-200"
+                x="50%"
+                y={-1}
+              >
+                <path
+                  d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+                  strokeWidth={0}
+                />
+              </svg>
+              <rect
+                fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)"
+                height="100%"
+                strokeWidth={0}
+                width="100%"
+              />
+            </svg>
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48"
+            >
+              <div
+                className="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                style={{
+                  clipPath:
+                    "polygon(63.1% 29.5%, 100% 17.1%, 76.6% 3%, 48.4% 0%, 44.6% 4.7%, 54.5% 25.3%, 59.8% 49%, 55.2% 57.8%, 44.4% 57.2%, 27.8% 47.9%, 35.1% 81.5%, 0% 97.7%, 39.2% 100%, 35.2% 81.4%, 97.2% 52.8%, 63.1% 29.5%)",
+                }}
+              />
+            </div>
+            <div className="overflow-hidden">
+              <div className=" px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+                <div className="gap-x-14 justify-between lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+                  <div className="relative w-full lg:shrink-0 xl:max-w-2xl">
+                    <h1 className="text-4xl font-bold tracking-normal sm:text-6xl">
+                      Same dynamics as in real life,
+                      <span className="text-primary underline">but safer</span>
+                    </h1>
+                    <p className="mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
+                      Kammar ensures that every transaction mimics the
+                      authenticity of real-life interactions while prioritizing
+                      your security. Whether you&apos;re a buyer seeking quality
+                      services or a seller looking to expand your clientele, we
+                      provide a seamless and trustworthy environment for all
+                      your needs. With advanced safety measures and
+                      user-friendly features, enjoy peace of mind as you engage
+                      in a dynamic marketplace.
+                    </p>
+                    <div className="mt-10 flex items-center gap-x-6">
+                      <Link
+                        as={NextLink}
+                        className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        href="#"
+                      >
+                        Join as Seller
+                      </Link>
+                      <Link
+                        as={NextLink}
+                        className="text-sm font-semibold leading-6"
+                        href="#"
+                      >
+                        Explore gigs <span aria-hidden="true">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+                    <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                      <div className="relative">
+                        <Image
+                          alt=""
+                          className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                        />
+                        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                      </div>
+                    </div>
+                    <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+                      <div className="relative">
+                        <Image
+                          alt=""
+                          className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                        />
+                        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                      </div>
+                      <div className="relative">
+                        <Image
+                          alt=""
+                          className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
+                        />
+                        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                      </div>
+                    </div>
+                    <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
+                      <div className="relative">
+                        <Image
+                          alt=""
+                          className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
+                        />
+                        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                      </div>
+                      <div className="relative">
+                        <Image
+                          alt=""
+                          className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                        />
+                        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Wrapper>
     </>
   );
 }
