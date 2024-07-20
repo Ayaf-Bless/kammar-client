@@ -41,10 +41,9 @@ function Feature() {
             The Ultimate Platform for Your Project Needs
           </p>
           <p className="mt-6 text-medium leading-8 light:text-gray-600">
-            Our platform offers a seamless experience from finding the perfect
-            service to ensuring secure transactions. Whether you need a small
-            task completed or a large project managed, we&apos;ve got you
-            covered.
+            Kammar offers a seamless experience from finding the perfect service
+            to ensuring secure transactions. Whether you need a small task
+            completed or a large project managed, we&apos;ve got you covered.
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">

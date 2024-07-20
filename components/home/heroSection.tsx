@@ -2,7 +2,6 @@
 
 import { Image, Link } from "@nextui-org/react";
 import NextLink from "next/link";
-import NextImage from "next/image";
 
 import Navbar from "../general/navbar";
 import Wrapper from "../general/wrapper";
@@ -64,8 +63,8 @@ export default function HeroSection() {
                 <div className="gap-x-14 justify-between lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                   <div className="relative w-full lg:shrink-0 xl:max-w-2xl">
                     <h1 className="text-4xl font-bold tracking-normal sm:text-6xl">
-                      Same dynamics as in real life,
-                      <span className="text-primary underline">but safer</span>
+                      Same dynamics as in real life,{" "}
+                      <span className="text-primary italic">but safer</span>
                     </h1>
                     <p className="mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
                       Kammar ensures that every transaction mimics the
@@ -87,7 +86,7 @@ export default function HeroSection() {
                       </Link>
                       <Link
                         as={NextLink}
-                        className="text-sm font-semibold leading-6"
+                        className="text-sm dark:text-white text-black font-semibold leading-6"
                         href="#"
                       >
                         Explore gigs <span aria-hidden="true">→</span>

@@ -2,8 +2,8 @@
 
 import React from "react";
 
-import Illustration from "@/components/auth/Illustration";
-import SigninForm from "@/components/auth/SigninForm";
+import Illustration from "@/components/auth/illustration";
+import SigninForm from "@/components/auth/signinForm";
 
 export default function Component() {
   return (

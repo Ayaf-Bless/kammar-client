@@ -116,7 +116,12 @@ function SigninForm() {
             isInvalid={errors.password ? true : false}
           />
           <div className="flex items-end justify-end px-1 py-2">
-            <Link as={NextLink} className="text-default-500" href="#" size="sm">
+            <Link
+              as={NextLink}
+              className="text-default-500"
+              href="/forgot-password"
+              size="sm"
+            >
               Forgot password?
             </Link>
           </div>

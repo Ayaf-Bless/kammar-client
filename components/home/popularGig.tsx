@@ -9,9 +9,10 @@ function PopuparGig() {
     <Wrapper>
       <div className="py-32">
         <div className=" mb-10 flex flex-col max-w-[50%] gap-3">
-          <HeadingOne>
-            Get things done quickly - Explore Popular services
-          </HeadingOne>
+          <p className="text-lg font-semibold leading-8 tracking-tight text-primary">
+            Explore Popular services
+          </p>
+          <HeadingOne>Get things done quickly</HeadingOne>
           <span className="text-default-500 max-w-[80%] capitalize">
             From handyman services to creative tasks. find skilled professionals
             for all your needs
