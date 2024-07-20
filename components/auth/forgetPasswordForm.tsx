@@ -1,12 +1,11 @@
 "use client";
 
-import { Button, Input, Link, Divider } from "@nextui-org/react";
-import NextLink from "next/link";
-import { Icon } from "@iconify/react";
+import { Button, Input } from "@nextui-org/react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+
 import { useForgotPasswordMutation } from "@/services/auth/auth.services";
 import { useToast } from "@/contexts/ToastContext";
 
