@@ -55,7 +55,7 @@ export default function Promo() {
             market. Find the perfect fit and price for your needs.
           </p>
           <AppLink
-            className="mt-6 inline-block w-full rounded-md border border-transparent bg-secondary px-8 py-3 font-medium text-white  sm:w-auto"
+            className="mt-6 inline-block w-full rounded-md border border-primary  px-8 py-3 font-medium dark:text-white  sm:w-auto"
             href="#"
           >
             Find your perfect gig & haggle for the best price

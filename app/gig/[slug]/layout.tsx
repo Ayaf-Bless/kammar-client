@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "@/components/general/navbar";
+import Wrapper from "@/components/general/wrapper";
 import WithOptionalAuth from "@/libs/hoc/WithOptionalAuth";
 import { WithChildren } from "@/types";
 
@@ -8,7 +9,9 @@ function GigLayout({ children }: WithChildren) {
   return (
     <WithOptionalAuth>
       <Navbar />
-      <section className="">{children}</section>
+      <Wrapper>
+        <section>{children}</section>
+      </Wrapper>
     </WithOptionalAuth>
   );
 }

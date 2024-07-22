@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 
 import { cn } from "@/libs/general/cn";
 import { formatDeliveryTime } from "@/utils/formatDeliveryTime";
+import Badge from "../general/badge";
 
 export type PlanRadioProps = RadioProps & {
   icon?: React.ReactNode;
@@ -78,13 +79,11 @@ const PlanRadio = React.forwardRef<HTMLInputElement, PlanRadioProps>(
                   {monthlyPrice !== undefined && ` $${monthlyPrice}`}
                 </span>
                 <span className="mt-0.5 text-tiny  text-secondary">
-                  {IsBargainable && "You Can Bargain"}
+                  {IsBargainable && (
+                    <Badge type="warning">You can Haggle</Badge>
+                  )}
                 </span>
-                {isRecommanded && (
-                  <Chip color="primary" size="md">
-                    Recommended
-                  </Chip>
-                )}
+                {isRecommanded && <Badge type="success">Recommended</Badge>}
               </div>
               <p className="text-tiny text-default-600 dark:text-default-400">
                 {formatDeliveryTime(deliveryUnit, expectedDelivery)}
