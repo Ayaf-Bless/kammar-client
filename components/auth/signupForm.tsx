@@ -52,7 +52,7 @@ function SignUpForm() {
 
       if (result.data?.accessToken && result.data.refreshToken) {
         setTokens(result.data.accessToken, result.data.refreshToken);
-        router.push(`/onboarding-user`);
+        router.replace(`/onboarding-user`);
       }
     } catch (err: any) {
       addToast("error", "Something went wrong", err.data.message);

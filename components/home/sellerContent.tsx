@@ -5,8 +5,8 @@ import {
   ArrowPathRoundedSquareIcon,
   BanknotesIcon,
 } from "@heroicons/react/24/outline";
-import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
+import { Button } from "@nextui-org/button";
 
 import Wrapper from "../general/wrapper";
 
@@ -162,13 +162,14 @@ function SellerContent() {
                 our support and tools, you can focus on what you do
                 best—providing top-notch services to your clients.
               </p>
-              <Link
+              <Button
                 as={NextLink}
-                className="rounded-md flex justify-center bg-primary px-3.5 py-2.5 mt-4 w-full text-sm font-semibold text-white shadow-sm hover:bg-primary-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="w-full mt-4"
+                color="primary"
                 href="#"
               >
                 Become Frelencer
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

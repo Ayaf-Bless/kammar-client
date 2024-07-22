@@ -2,6 +2,7 @@
 
 import { Image, Link } from "@nextui-org/react";
 import NextLink from "next/link";
+import NextImage from "next/image";
 
 import Navbar from "../general/navbar";
 import Wrapper from "../general/wrapper";
@@ -61,7 +62,7 @@ export default function HeroSection() {
             <div className="overflow-hidden">
               <div className=" px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
                 <div className="gap-x-14 justify-between lg:mx-0 lg:flex lg:max-w-none lg:items-center">
-                  <div className="relative w-full lg:shrink-0 xl:max-w-2xl">
+                  <div className="relative w-full lg:shrink-0 xl:max-w-3xl">
                     <h1 className="text-4xl font-bold tracking-normal sm:text-6xl">
                       Same dynamics as in real life,{" "}
                       <span className="text-primary italic">but safer</span>
@@ -98,6 +99,9 @@ export default function HeroSection() {
                       <div className="relative">
                         <Image
                           alt=""
+                          as={NextImage}
+                          width={300}
+                          height={500}
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                           src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
                         />
@@ -107,6 +111,9 @@ export default function HeroSection() {
                     <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                       <div className="relative">
                         <Image
+                          as={NextImage}
+                          width={300}
+                          height={500}
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                           src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
@@ -115,6 +122,9 @@ export default function HeroSection() {
                       </div>
                       <div className="relative">
                         <Image
+                          as={NextImage}
+                          width={300}
+                          height={500}
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                           src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
@@ -125,6 +135,9 @@ export default function HeroSection() {
                     <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                       <div className="relative">
                         <Image
+                          as={NextImage}
+                          width={300}
+                          height={500}
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                           src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
@@ -133,6 +146,9 @@ export default function HeroSection() {
                       </div>
                       <div className="relative">
                         <Image
+                          as={NextImage}
+                          width={300}
+                          height={500}
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                           src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"

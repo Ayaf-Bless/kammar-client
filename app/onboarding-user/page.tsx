@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import ContentSide from "@/components/auth/onBoarding/ContentsSide";
 import { OnboardingUserSideBar } from "@/components/auth/onBoarding/onboardingUserSidebar";
 import VerticalSteps from "@/components/vertical-steps";
-import { useAppSelector } from "@/store/store";
 
 function Onboarding() {
   const [currentStep, setCurrentStep] = useState(0);

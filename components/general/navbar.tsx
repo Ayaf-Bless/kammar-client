@@ -21,6 +21,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import Logo from "../logo/Logo";
+import { ThemeSwitch } from "../theme-switch";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -240,15 +241,9 @@ export default function Example() {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <Link className="group -m-2 flex items-center p-2" href="#">
-                    <HeartIcon
-                      aria-hidden="true"
-                      className="h-6 w-6 flex-shrink-0 text-default-500 group-hover:text-default-700"
-                    />
-                    <span className="ml-2 text-sm font-medium text-default-400 group-hover:text-default-700">
-                      0
-                    </span>
-                    <span className="sr-only">items in cart, view bag</span>
+                  <Link className="group flex items-center" href="#">
+                    <ThemeSwitch />
+                    <span className="sr-only">switch theme</span>
                   </Link>
                 </div>
               </div>
