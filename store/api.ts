@@ -54,6 +54,6 @@ const baseQueryWithReAuth: BaseQueryFn<
 export const api = createApi({
   reducerPath: "clientApi",
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ["Auth", "Seller", "Chat"], //TODO: add more for caching
+  tagTypes: ["Auth", "Seller", "Chat", "Gig", "Category"], //TODO: add more for caching
   endpoints: () => ({}),
 });

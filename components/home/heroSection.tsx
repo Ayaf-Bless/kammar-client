@@ -68,14 +68,13 @@ export default function HeroSection() {
                       <span className="text-primary italic">but safer</span>
                     </h1>
                     <p className="mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                      Kammar ensures that every transaction mimics the
-                      authenticity of real-life interactions while prioritizing
-                      your security. Whether you&apos;re a buyer seeking quality
-                      services or a seller looking to expand your clientele, we
-                      provide a seamless and trustworthy environment for all
-                      your needs. With advanced safety measures and
-                      user-friendly features, enjoy peace of mind as you engage
-                      in a dynamic marketplace.
+                      Kammar ensures authentic, secure transactions that mirror
+                      real-life interactions. Whether you&apos;re a buyer
+                      seeking quality services or a seller expanding your
+                      clientele, we offer a seamless and trustworthy
+                      environment. Enjoy peace of mind with our advanced safety
+                      measures and user-friendly features in a dynamic
+                      marketplace.
                     </p>
                     <div className="mt-10 flex items-center gap-x-6">
                       <AppLink

@@ -10,3 +10,7 @@ export function addLineBreaks(text: string, interval = 4) {
 
   return words.join(" ");
 }
+
+// export function classNames(...classes: any) {
+//   return classes.filter(Boolean).join(" ");
+// }

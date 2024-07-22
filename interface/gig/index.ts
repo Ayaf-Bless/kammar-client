@@ -11,17 +11,11 @@ export enum GigStatus {
 
 interface DescriptionTemplate {
   getAttention?: string;
-
   introduction: string;
-
   uniqueSellingPoints?: string[];
-
   requirements: string[];
-
   process: string;
-
   callToAction?: string;
-
   others?: {
     title: string;
     paragraph: string;
@@ -30,45 +24,31 @@ interface DescriptionTemplate {
 
 interface Bargain {
   enabled: boolean;
-
   minPrice?: number;
 }
 
 interface Extra {
   title: string;
-
   price: number;
-
   description: string;
 }
 
 export interface GigPackage {
   title: string;
-
   expectedDelivery: number;
-
   price: number;
-
   deliveryUnit: string;
-
   bargain: Bargain;
-
   isRecommended: boolean;
-
   whatsIncluded?: string[];
-
   _id: string;
 }
 
 export interface ExpressPackage {
   title: string;
-
   expectedDelivery: number;
-
   price: number;
-
   deliveryUnit: string;
-
   _id?: string;
 }
 
@@ -96,30 +76,32 @@ interface GigSeller {
   subCategory: string;
 }
 
-export interface GigDto {
+export interface Igig {
+  _id: string;
+
   title: string;
 
-  slug: string;
+  slug?: string;
 
-  seller: GigSeller;
+  seller?: GigSeller;
 
   shortDescription: string;
 
-  targetCity: string;
+  targetCity?: string;
 
-  targetCountry: string;
+  targetCountry?: string;
 
-  tags: string[];
+  tags?: string[];
 
   images: string[];
 
   descriptionTemplate: DescriptionTemplate;
 
-  metadata: Metadata;
+  metadata?: Metadata;
 
-  status: string;
+  status?: string;
 
-  isFeatured: boolean;
+  isFeatured?: boolean;
 
   packages: GigPackage[];
 
@@ -127,7 +109,9 @@ export interface GigDto {
 
   subCategory: string;
 
-  flash: {
+  express?: ExpressPackage;
+
+  flash?: {
     isActive: boolean;
     discountPercentage: number;
     startDate: Date;
@@ -136,11 +120,11 @@ export interface GigDto {
     flashSaleSales: number;
   };
 
-  isFlash: boolean;
+  isFlash?: boolean;
 
-  createdAt: Date;
+  createdAt?: Date;
 
-  updatedAt: Date;
+  updatedAt?: Date;
 }
 
 export interface SearchGigsDto {
@@ -158,7 +142,7 @@ export interface SearchGigsDto {
   status: GigStatus[];
 }
 
-export interface IGig extends GigDto {
+export interface IGig extends Igig {
   id: string;
 
   _id: string;
