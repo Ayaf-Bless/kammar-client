@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -17,18 +17,40 @@ import {
   Bars3Icon,
   MagnifyingGlassIcon,
   XMarkIcon,
-  HeartIcon,
 } from "@heroicons/react/24/outline";
 
 import Logo from "../logo/Logo";
 import { ThemeSwitch } from "../theme-switch";
 
+import { useGetGigCategoryQuery } from "@/services/gig/gig.service";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { addCageGories } from "@/services/gig/reducers/gig.category";
+import { IGigcategory } from "@/interface/gig/category";
+import AppLink from "../apps/AppLink";
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function NavBar() {
+  const [selectedCategory, setSelectedCategory] = useState<IGigcategory | null>(
+    null,
+  );
+
+  const dispatch = useAppDispatch();
+
+  const categories: IGigcategory[] = useAppSelector(
+    (state) => state.gigCategory,
+  );
+
   const [open, setOpen] = useState(false);
+  const { data } = useGetGigCategoryQuery();
+
+  useEffect(() => {
+    if (data && data.data) {
+      dispatch(addCageGories({ categories: data.data }));
+    }
+  }, [data, dispatch]);
 
   return (
     <div className="bg-inherit">
@@ -68,29 +90,33 @@ export default function Example() {
                   </button>
                 </div>
 
-                {/* Links */}
+                {/* Categories and subcategories */}
                 <TabGroup className="mt-2">
                   <div className="border-b border-default-400">
                     <div className="-mb-px flex space-x-8 px-4">Menu</div>
                   </div>
                   <TabPanels as={Fragment}>
                     <TabPanel className="space-y-10 px-4 pb-8 pt-10">
-                      <div>
-                        <p className="font-medium ">Category</p>
-                        <ul
-                          aria-labelledby={`-heading-mobile`}
-                          className="mt-6 flex flex-col space-y-6"
-                        >
-                          <li className="flow-root">
-                            <Link
-                              className="-m-2 block p-2 text-gray-500"
-                              href="#"
-                            >
-                              Category Item
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
+                      {categories.map((category) => (
+                        <div key={category._id}>
+                          <p className="font-medium ">{category.title}</p>
+                          <ul
+                            aria-labelledby={`heading-${category._id}`}
+                            className="mt-6 flex flex-col space-y-6"
+                          >
+                            {category.subCategories.map((subCategory) => (
+                              <li key={subCategory._id} className="flow-root">
+                                <Link
+                                  className="-m-2 block p-2 text-gray-500"
+                                  href="#"
+                                >
+                                  {subCategory.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
                     </TabPanel>
                   </TabPanels>
                 </TabGroup>
@@ -168,30 +194,67 @@ export default function Example() {
                           leaveFrom="opacity-100"
                           leaveTo="opacity-0"
                         >
-                          <PopoverPanel className="absolute z-10 inset-x-0 top-full text-sm text-gray-500">
+                          <PopoverPanel className="absolute text-default-700 shadow-medium dark:shadow-lg dark:shadow-gray-800 shadow-gray-600 z-10 inset-x-0 top-full text-sm ">
                             <div className="relative bg-white dark:bg-black dark:text-default-500 ">
-                              <div className="mx-auto max-w-7xl px-8">
-                                <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                  {/* In case I want to add images */}
-                                  {/* <div className="col-start-2 grid grid-cols-2 gap-x-8"></div> */}
-                                  <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
-                                    <div>
-                                      <p
-                                        className="font-medium text-gray-900  dark:text-default-700 "
-                                        id={`heading`}
-                                      >
-                                        category
-                                      </p>
-                                      <ul
-                                        aria-labelledby={`-heading`}
-                                        className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                      >
-                                        <li className="flex">
-                                          <Link className="" href="#">
-                                            name
-                                          </Link>
-                                        </li>
-                                      </ul>
+                              <div className="mx-auto px-8">
+                                <div className="flex py-5">
+                                  <div className="flex w-full">
+                                    {/* Categories List */}
+                                    <div className="w-1/3">
+                                      <div className="p-4 border-b">
+                                        <h3 className="text-lg font-semibold">
+                                          Categories
+                                        </h3>
+                                      </div>
+                                      {categories.map((category) => (
+                                        <button
+                                          key={category._id}
+                                          className={`w-full text-left px-4 py-2 transition-colors capitalize ${
+                                            selectedCategory?._id ===
+                                            category._id
+                                              ? "bg-primary text-primary-foreground"
+                                              : "hover:bg-muted"
+                                          }`}
+                                          onClick={() =>
+                                            setSelectedCategory(category)
+                                          }
+                                        >
+                                          {category.title}
+                                        </button>
+                                      ))}
+                                    </div>
+
+                                    {/* Subcategories List */}
+                                    <div className="w-2/3 pl-8">
+                                      {selectedCategory && (
+                                        <div className="bg-background rounded-lg shadow-sm">
+                                          <div className="p-4 border-b">
+                                            <h3 className="text-lg font-semibold capitalize">
+                                              {selectedCategory.title}
+                                            </h3>
+                                          </div>
+                                          <div className="p-4 space-y-2">
+                                            {selectedCategory.subCategories.map(
+                                              (subcategory) => (
+                                                <AppLink
+                                                  key={subcategory._id}
+                                                  className="px-4 py-2 rounded-md hover:bg-muted flex items-start flex-col"
+                                                  href="#"
+                                                >
+                                                  <span className="capitalize text-default-700">
+                                                    {subcategory.title}
+                                                  </span>
+                                                  <span className="text-tiny text-default-500">
+                                                    {
+                                                      subcategory.shortDescription
+                                                    }
+                                                  </span>
+                                                </AppLink>
+                                              ),
+                                            )}
+                                          </div>
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 </div>

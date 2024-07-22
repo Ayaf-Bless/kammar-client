@@ -13,6 +13,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "./api";
 
 import { authReducer } from "@/services/auth/reducers/auth.reducers";
+import { gigCategoriesReducer } from "@/services/gig/reducers/gig.category";
 
 const createNoopStorage = () => {
   return {
@@ -38,11 +39,13 @@ const authPersistConfig = {
   storage: storage,
   blacklist: ["api"],
 };
+
 const persistedReducer = persistReducer(authPersistConfig, authReducer);
 
 export const combineReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   auth: persistedReducer,
+  gigCategory: gigCategoriesReducer,
 });
 
 const rootReducer: Reducer = (state, action) => {
