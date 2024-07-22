@@ -1,11 +1,11 @@
 "use client";
 
-import { Image, Link } from "@nextui-org/react";
-import NextLink from "next/link";
+import { Image } from "@nextui-org/react";
 import NextImage from "next/image";
 
 import Navbar from "../general/navbar";
 import Wrapper from "../general/wrapper";
+import AppLink from "../apps/AppLink";
 
 export default function HeroSection() {
   return (
@@ -78,20 +78,18 @@ export default function HeroSection() {
                       in a dynamic marketplace.
                     </p>
                     <div className="mt-10 flex items-center gap-x-6">
-                      <Link
-                        as={NextLink}
+                      <AppLink
                         className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                         href="#"
                       >
                         Join as Seller
-                      </Link>
-                      <Link
-                        as={NextLink}
+                      </AppLink>
+                      <AppLink
                         className="text-sm dark:text-white text-black font-semibold leading-6"
                         href="#"
                       >
                         Explore gigs <span aria-hidden="true">→</span>
-                      </Link>
+                      </AppLink>
                     </div>
                   </div>
                   <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
@@ -100,10 +98,10 @@ export default function HeroSection() {
                         <Image
                           alt=""
                           as={NextImage}
-                          width={300}
-                          height={500}
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          height={500}
                           src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                          width={300}
                         />
                         <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                       </div>
@@ -111,23 +109,23 @@ export default function HeroSection() {
                     <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                       <div className="relative">
                         <Image
-                          as={NextImage}
-                          width={300}
-                          height={500}
                           alt=""
+                          as={NextImage}
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          height={500}
                           src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                          width={300}
                         />
                         <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                       </div>
                       <div className="relative">
                         <Image
-                          as={NextImage}
-                          width={300}
-                          height={500}
                           alt=""
+                          as={NextImage}
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          height={500}
                           src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
+                          width={300}
                         />
                         <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                       </div>
@@ -135,23 +133,23 @@ export default function HeroSection() {
                     <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                       <div className="relative">
                         <Image
-                          as={NextImage}
-                          width={300}
-                          height={500}
                           alt=""
+                          as={NextImage}
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          height={500}
                           src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
+                          width={300}
                         />
                         <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                       </div>
                       <div className="relative">
                         <Image
-                          as={NextImage}
-                          width={300}
-                          height={500}
                           alt=""
+                          as={NextImage}
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                          height={500}
                           src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                          width={300}
                         />
                         <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                       </div>
