@@ -21,12 +21,14 @@ import {
 
 import Logo from "../logo/Logo";
 import { ThemeSwitch } from "../theme-switch";
+import AppLink from "../apps/AppLink";
+
+import Accordion from "./accordion";
 
 import { useGetGigCategoryQuery } from "@/services/gig/gig.service";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { addCageGories } from "@/services/gig/reducers/gig.category";
 import { IGigcategory } from "@/interface/gig/category";
-import AppLink from "../apps/AppLink";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -98,24 +100,11 @@ export default function NavBar() {
                   <TabPanels as={Fragment}>
                     <TabPanel className="space-y-10 px-4 pb-8 pt-10">
                       {categories.map((category) => (
-                        <div key={category._id}>
-                          <p className="font-medium ">{category.title}</p>
-                          <ul
-                            aria-labelledby={`heading-${category._id}`}
-                            className="mt-6 flex flex-col space-y-6"
-                          >
-                            {category.subCategories.map((subCategory) => (
-                              <li key={subCategory._id} className="flow-root">
-                                <Link
-                                  className="-m-2 block p-2 text-gray-500"
-                                  href="#"
-                                >
-                                  {subCategory.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                        <Accordion
+                          key={category._id}
+                          items={category.subCategories}
+                          title={category.title}
+                        />
                       ))}
                     </TabPanel>
                   </TabPanels>

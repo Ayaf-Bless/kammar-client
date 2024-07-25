@@ -5,12 +5,22 @@ import { api } from "@/store/api";
 
 const PREFIX = "gig";
 
-export const authApi = api.injectEndpoints({
+export const gigApi = api.injectEndpoints({
   endpoints: (build) => ({
     getGig: build.query<AppResponse<Igig>, string>({
       query(id) {
         return {
           url: `${PREFIX}/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Gig"],
+    }),
+
+    getGigBySlug: build.query<AppResponse<Igig>, string>({
+      query(slug) {
+        return {
+          url: `${PREFIX}/slug/${slug}`,
           method: "GET",
         };
       },
@@ -29,4 +39,5 @@ export const authApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetGigQuery, useGetGigCategoryQuery } = authApi;
+export const { useGetGigQuery, useGetGigCategoryQuery, useGetGigBySlugQuery } =
+  gigApi;

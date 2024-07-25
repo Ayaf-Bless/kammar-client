@@ -12,12 +12,14 @@ import { api } from "./api";
 
 import { authReducer } from "@/services/auth/reducers/auth.reducers";
 import { gigCategoriesReducer } from "@/services/gig/reducers/gig.category";
+import { gigReducer } from "@/services/gig/reducers/gig.reducers";
 
 // Combine reducers
 export const combineReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   auth: authReducer,
   gigCategory: gigCategoriesReducer,
+  gig: gigReducer,
 });
 
 // Root reducer with a logout handler

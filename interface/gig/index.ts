@@ -1,3 +1,5 @@
+import { IReview } from "../general/review";
+
 export enum GigStatus {
   DRAFT = "draft",
   PUBLISHED = "published",
@@ -20,6 +22,12 @@ interface DescriptionTemplate {
     title: string;
     paragraph: string;
   };
+  whatsIncluded: string[];
+  deliverables?: string[];
+  faqs: {
+    title: string;
+    content: string;
+  }[];
 }
 
 interface Bargain {
@@ -83,7 +91,7 @@ export interface Igig {
 
   slug?: string;
 
-  seller?: GigSeller;
+  seller?: Partial<GigSeller>;
 
   shortDescription: string;
 
@@ -109,7 +117,7 @@ export interface Igig {
 
   subCategory: string;
 
-  express?: ExpressPackage;
+  expressPackage?: ExpressPackage;
 
   flash?: {
     isActive: boolean;
@@ -120,11 +128,18 @@ export interface Igig {
     flashSaleSales: number;
   };
 
+  rating: {
+    average: number;
+    total: number;
+  };
+
   isFlash?: boolean;
 
   createdAt?: Date;
 
   updatedAt?: Date;
+
+  reviews: IReview[];
 }
 
 export interface SearchGigsDto {
