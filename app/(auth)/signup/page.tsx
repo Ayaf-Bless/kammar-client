@@ -1,7 +1,7 @@
 "use client";
 
-import Illustration from "@/components/auth/Illustration";
-import SignUpForm from "@/components/auth/SignupForm";
+import Illustration from "@/components/auth/illustration";
+import SignUpForm from "@/components/auth/signupForm";
 
 function Signup() {
   return (

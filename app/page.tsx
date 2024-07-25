@@ -1,24 +1,20 @@
-import Link from "next/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
-import Logo from "@/components/logo/Logo";
+import Feature from "@/components/home/features";
+import HeroSection from "@/components/home/heroSection";
+import PopuparGig from "@/components/home/popularGig";
+import Promo from "@/components/home/promo";
+import SellerContent from "@/components/home/sellerContent";
+import WithOptionalAuth from "@/libs/hoc/WithOptionalAuth";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center  gap-4 py-8 md:py-10">
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ea
-        tempora ducimus nobis maiores! Voluptate id maxime distinctio nobis?
-        Expedita mollitia quisquam rem dignissimos? Iste sunt minus optio rem
-        minima.
-      </p>
-
-      <Link href={"signin"}>Sign in</Link>
-    </div>
+    <WithOptionalAuth>
+      <div>
+        <HeroSection />
+        <Feature />
+        <PopuparGig />
+        <SellerContent />
+        <Promo />
+      </div>
+    </WithOptionalAuth>
   );
 }

@@ -1,14 +1,66 @@
 "use client";
 
-import { Button, Input, Link, Divider, Checkbox } from "@nextui-org/react";
+import { Button, Input, Link, Divider } from "@nextui-org/react";
 import NextLink from "next/link";
 import { Icon } from "@iconify/react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-import Logo from "@/components/logo/Logo";
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
+import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
+import { useSignInMutation } from "@/services/auth/auth.services";
+import { setTokens } from "@/libs/general/token";
+import { useToast } from "@/contexts/ToastContext";
+
+const signInSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  password: z.string().min(PASSWORD_MIN_LENGTH, {
+    message: `Password must be at least ${PASSWORD_MIN_LENGTH} characters`,
+  }),
+  remember: z.boolean().optional(),
+});
+
+type SignInFormData = z.infer<typeof signInSchema>;
 
 function SigninForm() {
+  const [signIn, { isLoading }] = useSignInMutation();
   const { isVisible, toggleVisibility } = usePasswordVisibility();
+  const router = useRouter();
+  const { addToast } = useToast();
+
+  const [error, setError] = useState<string | null>(null);
+
+  const onSubmit = async (data: SignInFormData) => {
+    setError(null);
+
+    try {
+      const result = await signIn({
+        email: data.email,
+        password: data.password,
+      }).unwrap();
+
+      if (result.data?.accessToken && result.data.refreshToken) {
+        setTokens(result.data.accessToken, result.data.refreshToken);
+        router.push(`/`);
+      }
+    } catch (err) {
+      addToast(
+        "error",
+        "Something went wrong",
+        "Invalid credentials. Please try again.",
+      );
+    }
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
+  });
 
   return (
     <div className="flex w-full items-center justify-center bg-background lg:w-1/2">
@@ -22,17 +74,19 @@ function SigninForm() {
 
         <form
           className="flex w-full flex-col gap-3"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Input
             isRequired
             label="Email Address"
-            name="email"
             placeholder="Enter your email"
-            radius="none"
+            radius="sm"
             required={true}
             type="email"
             variant="bordered"
+            {...register("email")}
+            errorMessage={errors.email?.message}
+            isInvalid={errors.email ? true : false}
           />
           <Input
             isRequired
@@ -52,24 +106,34 @@ function SigninForm() {
               </button>
             }
             label="Password"
-            name="password"
             placeholder="Enter your password"
-            radius="none"
+            radius="sm"
             required={true}
             type={isVisible ? "text" : "password"}
             variant="bordered"
+            {...register("password")}
+            errorMessage={errors.password?.message}
+            isInvalid={errors.password ? true : false}
           />
-          <div className="flex items-center justify-between px-1 py-2">
-            <Checkbox name="remember" radius="none" size="sm">
-              Remember for 15 days
-            </Checkbox>
-            <Link as={NextLink} className="text-default-500" href="#" size="sm">
+          <div className="flex items-end justify-end px-1 py-2">
+            <Link
+              as={NextLink}
+              className="text-default-500"
+              href="/forgot-password"
+              size="sm"
+            >
               Forgot password?
             </Link>
           </div>
-          <Button color="primary" radius="none" type="submit">
-            Log In
+          <Button
+            color="primary"
+            isLoading={isLoading}
+            radius="sm"
+            type="submit"
+          >
+            Sign In
           </Button>
+          {error && <p className="text-red-500">{error}</p>}
         </form>
 
         <div className="flex w-full items-center gap-4 py-2">
@@ -80,7 +144,7 @@ function SigninForm() {
 
         <div className="flex w-full flex-col gap-2">
           <Button
-            radius="none"
+            radius="sm"
             startContent={<Icon icon="flat-color-icons:google" width={24} />}
             variant="bordered"
           >

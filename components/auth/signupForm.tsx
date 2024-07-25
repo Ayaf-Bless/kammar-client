@@ -4,13 +4,69 @@ import { Icon } from "@iconify/react";
 import { Button } from "@nextui-org/button";
 import { Checkbox, Divider, Input, Link } from "@nextui-org/react";
 import NextLink from "next/link";
-
-import Logo from "../logo/Logo";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
+import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
+import { useSignUpMutation } from "@/services/auth/auth.services";
+import { useToast } from "@/contexts/ToastContext";
+import { setTokens } from "@/libs/general/token";
+import Toast from "../general/Toast";
+
+const signUpSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  username: z
+    .string()
+    .min(5, { message: "Username should have at least 5 characters" }),
+  password: z.string().min(PASSWORD_MIN_LENGTH, {
+    message: `Password must be at least ${PASSWORD_MIN_LENGTH} characters`,
+  }),
+  confirmPassword: z.string().min(PASSWORD_MIN_LENGTH, {
+    message: `Confrm password must be at least ${PASSWORD_MIN_LENGTH} characters`,
+  }),
+  agreeToTerms: z.boolean().refine((value) => value === true, {
+    message: "You must agree to terms and conditions",
+  }),
+});
+
+type SignUpFormData = z.infer<typeof signUpSchema>;
 
 function SignUpForm() {
+  const [signUp, { isLoading }] = useSignUpMutation();
+
+  const router = useRouter();
+  const { addToast } = useToast();
+
   const { isVisible, toggleVisibility } = usePasswordVisibility();
+
+  const onSubmit = async (data: SignUpFormData) => {
+    try {
+      const result = await signUp({
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        username: data.username,
+      }).unwrap();
+
+      if (result.data?.accessToken && result.data.refreshToken) {
+        setTokens(result.data.accessToken, result.data.refreshToken);
+        router.replace(`/onboarding-user`);
+      }
+    } catch (err: any) {
+      addToast("error", "Something went wrong", err.data.message);
+    }
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpFormData>({
+    resolver: zodResolver(signUpSchema),
+  });
 
   return (
     <div className="flex w-full items-center justify-center bg-background lg:w-1/2">
@@ -24,15 +80,17 @@ function SignUpForm() {
 
         <form
           className="flex w-full flex-col gap-3"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Input
             isRequired
             required
             label="Email Address"
-            name="email"
             placeholder="Enter your email"
-            radius="none"
+            radius="sm"
+            {...register("email")}
+            errorMessage={errors.email?.message}
+            isInvalid={errors.email ? true : false}
             type="email"
             variant="bordered"
           />
@@ -40,27 +98,11 @@ function SignUpForm() {
             isRequired
             required
             label="Username"
-            name="username"
             placeholder="Enter your username"
-            radius="none"
-            type="text"
-            variant="bordered"
-          />
-          <Input
-            isRequired
-            required
-            label="First Name"
-            name="firstName"
-            placeholder="Enter your first name"
-            radius="none"
-            type="text"
-            variant="bordered"
-          />
-          <Input
-            label="Last Name"
-            name="lastName"
-            placeholder="Enter your last name"
-            radius="none"
+            radius="sm"
+            {...register("username")}
+            errorMessage={errors.username?.message}
+            isInvalid={errors.username ? true : false}
             type="text"
             variant="bordered"
           />
@@ -83,9 +125,11 @@ function SignUpForm() {
               </button>
             }
             label="Password"
-            name="password"
+            {...register("password")}
+            errorMessage={errors.password?.message}
+            isInvalid={errors.password ? true : false}
             placeholder="Create a password"
-            radius="none"
+            radius="sm"
             type={isVisible ? "text" : "password"}
             variant="bordered"
           />
@@ -108,9 +152,11 @@ function SignUpForm() {
               </button>
             }
             label="Confirm Password"
-            name="confirmPassword"
+            {...register("confirmPassword")}
+            errorMessage={errors.confirmPassword?.message}
+            isInvalid={errors.confirmPassword ? true : false}
             placeholder="Confirm your password"
-            radius="none"
+            radius="sm"
             type={isVisible ? "text" : "password"}
             variant="bordered"
           />
@@ -118,7 +164,9 @@ function SignUpForm() {
             isRequired
             required
             className="py-4"
-            radius="none"
+            {...register("agreeToTerms")}
+            isInvalid={errors.agreeToTerms ? true : false}
+            radius="sm"
             size="sm"
           >
             I agree with the&nbsp;
@@ -130,7 +178,12 @@ function SignUpForm() {
               Privacy Policy
             </Link>
           </Checkbox>
-          <Button color="primary" radius="none" type="submit">
+          <Button
+            color="primary"
+            isLoading={isLoading}
+            radius="sm"
+            type="submit"
+          >
             Sign Up
           </Button>
         </form>
@@ -142,7 +195,7 @@ function SignUpForm() {
 
         <div className="flex w-full flex-col gap-2">
           <Button
-            radius="none"
+            radius="sm"
             startContent={<Icon icon="flat-color-icons:google" width={24} />}
             variant="bordered"
           >
@@ -152,8 +205,8 @@ function SignUpForm() {
 
         <p className="text-center text-small">
           Already have an account?&nbsp;
-          <Link as={NextLink} href="signin" size="sm">
-            Log In
+          <Link as={NextLink} color="primary" href="signin" size="sm">
+            Sign In
           </Link>
         </p>
       </div>

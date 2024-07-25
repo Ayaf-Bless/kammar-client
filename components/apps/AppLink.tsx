@@ -6,7 +6,7 @@ import { WithChildren } from "@/types";
 export interface Prop {
   href: string;
   size?: "sm" | "md" | "lg" | undefined;
-  color:
+  color?:
     | "foreground"
     | "primary"
     | "secondary"
@@ -14,8 +14,9 @@ export interface Prop {
     | "warning"
     | "danger"
     | undefined;
-  isExternal: boolean;
-  showAnchorIcon: boolean;
+  isExternal?: boolean;
+  showAnchorIcon?: boolean;
+  className: string;
 }
 
 function AppLink({
@@ -25,10 +26,12 @@ function AppLink({
   color,
   isExternal,
   showAnchorIcon,
+  className,
 }: WithChildren & Prop) {
   return (
     <Link
       as={NextLink}
+      className={className}
       color={color}
       href={href}
       isExternal={isExternal}
