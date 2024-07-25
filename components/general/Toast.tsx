@@ -49,10 +49,10 @@ const Toast = ({
       case "error":
         return (
           <svg
-            width={16}
+            fill="none"
             height={16}
             viewBox="0 0 16 16"
-            fill="none"
+            width={16}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -64,10 +64,10 @@ const Toast = ({
       case "info":
         return (
           <svg
-            width={16}
+            fill="none"
             height={16}
             viewBox="0 0 16 16"
-            fill="none"
+            width={16}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -79,10 +79,10 @@ const Toast = ({
       default:
         return (
           <svg
-            width={16}
+            fill="none"
             height={16}
             viewBox="0 0 16 16"
-            fill="none"
+            width={16}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -95,7 +95,7 @@ const Toast = ({
   };
 
   return (
-    <div className="bg-white dark:bg-black shadow-lg max-w-md mx-auto mt-4 light:shadow dark:shadow-gray-700 p-3">
+    <div className="bg-white dark:bg-black z-50 relative shadow-lg max-w-md mx-auto mt-4 light:shadow dark:shadow-gray-700 p-3">
       <div className="flex gap-x-3 justify-start items-center pt-4 px-4">
         {getIcon()}
         <p className="text-base font-semibold leading-none light:text-gray-800 dark:text-gray-400  capitalize">

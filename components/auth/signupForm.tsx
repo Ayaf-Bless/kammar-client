@@ -14,6 +14,7 @@ import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
 import { useSignUpMutation } from "@/services/auth/auth.services";
 import { useToast } from "@/contexts/ToastContext";
 import { setTokens } from "@/libs/general/token";
+import Toast from "../general/Toast";
 
 const signUpSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
