@@ -231,47 +231,14 @@ import { useParams } from "next/navigation";
 
 import GigDetails from "@/components/gig/gig-detail";
 import { useGetGigBySlugQuery } from "@/services/gig/gig.service";
+import { HomeIcon } from "@heroicons/react/24/outline";
+import Breadcrumbs from "@/components/general/breadcrumbs";
 
-const product = {
-  name: "Basic Tee 6-Pack",
-  price: "$192",
-  href: "#",
-  breadcrumbs: [
-    { id: 1, name: "Men", href: "#" },
-    { id: 2, name: "Clothing", href: "#" },
-  ],
-  images: [
-    "https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg",
-    "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
-    "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
-    "https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
-  ],
-  colors: [
-    { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
-    { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
-    { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-  ],
-  sizes: [
-    { name: "XXS", inStock: false },
-    { name: "XS", inStock: true },
-    { name: "S", inStock: true },
-    { name: "M", inStock: true },
-    { name: "L", inStock: true },
-    { name: "XL", inStock: true },
-    { name: "2XL", inStock: true },
-    { name: "3XL", inStock: true },
-  ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-  highlights: [
-    "Hand cut and sewn locally",
-    "Dyed with our proprietary colors",
-    "Pre-washed & pre-shrunk",
-    "Ultra-soft 100% cotton",
-  ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-};
+const breadcrumbItems = [
+  { text: "Category", link: "/category" },
+  { text: "Subcategory", link: "/category/subcategory" },
+  { text: "Product", link: "/category/subcategory/product" },
+];
 
 export default function GigItem() {
   const { slug } = useParams();
@@ -281,41 +248,7 @@ export default function GigItem() {
   return (
     <div className="">
       <main className="pt-8 sm:pt-10">
-        <nav aria-label="Breadcrumb">
-          <ol className="mx-auto flex  items-center space-x-2 px-4 sm:px-6 lg:px-8">
-            {product.breadcrumbs.map((breadcrumb) => (
-              <li key={breadcrumb.id}>
-                <div className="flex items-center">
-                  <a
-                    className="mr-2 text-sm font-medium text-gray-900"
-                    href={breadcrumb.href}
-                  >
-                    {breadcrumb.name}
-                  </a>
-                  <svg
-                    aria-hidden="true"
-                    className="h-5 w-4 text-gray-300"
-                    fill="currentColor"
-                    height={20}
-                    viewBox="0 0 16 20"
-                    width={16}
-                  >
-                    <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                  </svg>
-                </div>
-              </li>
-            ))}
-            <li className="text-sm">
-              <a
-                aria-current="page"
-                className="font-medium text-gray-500 hover:light:text-gray-900 text-default-700"
-                href={product.href}
-              >
-                {product.name}
-              </a>
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumbs breadcrumbs={breadcrumbItems} />
 
         <GigDetails gig={gigData} />
       </main>

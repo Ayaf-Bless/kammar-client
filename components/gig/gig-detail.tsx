@@ -68,7 +68,7 @@ const GigDetails = ({ gig }: Prop) => {
       {tags && tags.length > 0 && (
         <section className="flex gap-2 mt-3">
           {tags.map((tag, i) => (
-            <Badge key={i} type="purple">
+            <Badge key={i} type="info">
               {tag.toUpperCase()}
             </Badge>
           ))}
