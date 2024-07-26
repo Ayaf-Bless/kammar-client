@@ -231,7 +231,6 @@ import { useParams } from "next/navigation";
 
 import GigDetails from "@/components/gig/gig-detail";
 import { useGetGigBySlugQuery } from "@/services/gig/gig.service";
-import { HomeIcon } from "@heroicons/react/24/outline";
 import Breadcrumbs from "@/components/general/breadcrumbs";
 
 const breadcrumbItems = [

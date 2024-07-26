@@ -61,12 +61,12 @@ const GigDetails = ({ gig }: Prop) => {
 
   return (
     <>
-      <div className="mx-auto mt-6 ">
+      <div className="mx-auto mt-6 lg:px-8 px-4 sm:px-6">
         <SwipeCarousel images={images} />
       </div>
 
       {tags && tags.length > 0 && (
-        <section className="flex gap-2 mt-3">
+        <section className="flex gap-2 lg:px-8 px-4 sm:px-6 mt-3">
           {tags.map((tag, i) => (
             <Badge key={i} type="info">
               {tag.toUpperCase()}
