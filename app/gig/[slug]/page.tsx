@@ -278,8 +278,6 @@ export default function GigItem() {
 
   const { data } = useGetGigBySlugQuery(slug as string);
 
-  console.log(data);
-
   return (
     <div className="">
       <main className="pt-8 sm:pt-10">

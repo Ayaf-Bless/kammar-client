@@ -185,7 +185,7 @@ const GigDetails = ({ gig }: Prop) => {
         </div>
       </div>
 
-      <div className="bg-white border-t pt-10">
+      <div className="border-t pt-10 dark:border-default-200">
         <div>
           <h2 className="sr-only">Customer Reviews</h2>
 

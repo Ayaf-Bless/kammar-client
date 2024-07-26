@@ -34,13 +34,13 @@ const ReviewComponent: React.FC<ReviewProps> = ({ review, reviewIdx }) => {
       </div>
       <div
         className={classNames(
-          reviewIdx === 0 ? "" : "border-t border-gray-200",
+          reviewIdx === 0
+            ? ""
+            : "border-t border-gray-200 dark:border-default-200",
           "flex-1 py-10",
         )}
       >
-        <h3 className="font-medium text-gray-900">
-          {review.reviewer.username}
-        </h3>
+        <h3 className="font-medium">{review.reviewer.username}</h3>
         <p>
           <time dateTime={review.createdAt.toISOString()}>
             {formatDate(new Date(review.createdAt))}
@@ -48,24 +48,25 @@ const ReviewComponent: React.FC<ReviewProps> = ({ review, reviewIdx }) => {
         </p>
 
         <div className="mt-4 flex items-center">
-          <div className="mt-4 flex items-center">
-            {[0, 1, 2, 3, 4].map((rating) => (
-              <StarIcon
-                key={rating}
-                aria-hidden="true"
-                className={classNames(
-                  review.rating > rating ? "text-yellow-400" : "text-gray-300",
-                  "h-5 w-5 flex-shrink-0",
-                )}
-              />
-            ))}
-          </div>
-          <p className="sr-only">{review.rating} out of 5 stars</p>
-          <div
-            dangerouslySetInnerHTML={{ __html: review.comment }}
-            className="prose prose-sm mt-4 max-w-none text-gray-500"
-          />
+          {[0, 1, 2, 3, 4].map((rating) => (
+            <StarIcon
+              key={rating}
+              aria-hidden="true"
+              className={classNames(
+                review.rating > rating
+                  ? "text-yellow-400"
+                  : "text-gray-300 dark:text-default-200",
+                "h-5 w-5 flex-shrink-0",
+              )}
+            />
+          ))}
         </div>
+        <p className="sr-only">{review.rating} out of 5 stars</p>
+
+        <div
+          dangerouslySetInnerHTML={{ __html: review.comment }}
+          className="prose prose-sm mt-4 max-w-none text-gray-500 dark:text-default-500"
+        />
       </div>
     </div>
   );
