@@ -39,7 +39,7 @@ const baseQueryWithReAuth: BaseQueryFn<
 
     await baseQuery(
       {
-        url: "/auth/refresh-tokens",
+        url: `${BASE_ENDPOINT}/v1/gateway/auth/refresh-tokens`,
         method: "POST",
         body: { refreshToken },
       },

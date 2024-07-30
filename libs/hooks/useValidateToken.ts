@@ -11,13 +11,11 @@ import { IUser } from "@/interface/auth/auth.interface";
 export const useValidateToken = () => {
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const dispatch = useAppDispatch();
-
   const { data, error, isLoading } = useMeQuery();
 
   useEffect(() => {
     if (data && data.data) {
       dispatch(addAuthUser({ authInfo: data.data as IUser }));
-
       setIsValid(true);
     } else if (!isLoading && (error || !data)) {
       setIsValid(false);

@@ -1,9 +1,9 @@
 "use client";
 
+import { useContext } from "react";
+
 import GigDetails from "@/components/gig/gig-detail";
 import Breadcrumbs from "@/components/general/breadcrumbs";
-import { Igig } from "@/interface/gig";
-import { useContext } from "react";
 import { GigContext } from "@/contexts/GigContext";
 
 const breadcrumbItems = [

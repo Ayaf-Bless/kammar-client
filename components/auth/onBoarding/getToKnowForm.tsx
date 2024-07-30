@@ -97,7 +97,7 @@ function GetToknowForm({ onStepChange }: Props) {
             //   errorMessage={errors.email?.message}
             //   isInvalid={errors.email ? true : false}
           />
-          <CountrySelect countries={countries} {...register("country")} />
+          <CountrySelect {...register("country")} />
           <DateInput
             isRequired
             label="Birth date"

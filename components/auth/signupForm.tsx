@@ -13,7 +13,6 @@ import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
 import { useSignUpMutation } from "@/services/auth/auth.services";
 import { useToast } from "@/contexts/ToastContext";
-import { setTokens } from "@/libs/general/token";
 import Toast from "../general/Toast";
 
 const signUpSchema = z.object({
@@ -51,9 +50,8 @@ function SignUpForm() {
         username: data.username,
       }).unwrap();
 
-      if (result.data?.accessToken && result.data.refreshToken) {
-        setTokens(result.data.accessToken, result.data.refreshToken);
-        router.replace(`/onboarding-user`);
+      if (result.ok) {
+        router.push(`/onboarding-user`);
       }
     } catch (err: any) {
       addToast("error", "Something went wrong", err.data.message);

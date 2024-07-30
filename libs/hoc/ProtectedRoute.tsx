@@ -9,15 +9,15 @@ import { WithChildren } from "@/types";
 
 const ProtectedRoute = ({ children }: WithChildren) => {
   const router = useRouter();
-  const { data, error, isLoading } = useValidateToken();
+  const { isValid, isLoading } = useValidateToken();
 
   useEffect(() => {
-    if (!isLoading && !data && error) {
+    if (!isLoading && isValid === false) {
       router.push("/signin");
     }
-  }, [isLoading, data, error, router]);
+  }, [isLoading, isValid, router]);
 
-  if (isLoading || !data) {
+  if (isLoading || isValid === null) {
     return <div>Loading...</div>;
   }
 

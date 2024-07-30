@@ -26,6 +26,19 @@ export const authApi = api.injectEndpoints({
       invalidatesTags: ["Auth"],
     }),
 
+    refreshToken: build.mutation<AppResponse<IAuthToken>, string>({
+      query(refreshToken) {
+        return {
+          url: `${PREFIX}/refresh-tokens`,
+          method: "POST",
+          body: {
+            refreshToken,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
+
     signIn: build.mutation<AppResponse<IAuthToken>, ISignInPayload>({
       query(body: ISignInPayload) {
         return {
@@ -182,4 +195,5 @@ export const {
   useResetPasswordMutation,
   useRegenarateVerifyEmailMutation,
   useVerifyEmailMutation,
+  useRefreshTokenMutation,
 } = authApi;

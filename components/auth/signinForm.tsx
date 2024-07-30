@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
 import { useSignInMutation } from "@/services/auth/auth.services";
-import { setTokens } from "@/libs/general/token";
+// import { setTokens } from "@/libs/general/token";
 import { useToast } from "@/contexts/ToastContext";
 
 const signInSchema = z.object({
@@ -42,8 +42,7 @@ function SigninForm() {
         password: data.password,
       }).unwrap();
 
-      if (result.data?.accessToken && result.data.refreshToken) {
-        setTokens(result.data.accessToken, result.data.refreshToken);
+      if (result.ok) {
         router.push(`/`);
       }
     } catch (err) {

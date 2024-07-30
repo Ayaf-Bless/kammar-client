@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import Accordion from "../general/accordion";
 import AppLink from "../apps/AppLink";
 import RatingSection from "../general/ratingSection";
@@ -15,6 +17,9 @@ interface Prop {
 }
 
 const GigDetails = ({ gig }: Prop) => {
+  if (!gig) {
+    return notFound();
+  }
   const {
     title,
     expressPackage,

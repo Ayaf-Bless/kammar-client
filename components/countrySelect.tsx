@@ -1,6 +1,8 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
+
+import countries from "@/utils/constants";
 
 type Country = {
   id: number;
@@ -15,38 +17,37 @@ type Country = {
 };
 
 interface Prop {
-  countries: Country[];
   name: string;
 }
 
-const CountrySelect: React.FC<Prop> = ({ countries, name }) => {
-  const countryOptions = useMemo(() => {
-    return countries.map((country) => (
-      <SelectItem
-        key={country.id}
-        startContent={
-          <Avatar alt={country.name} className="w-6 h-6" src={country.flag} />
-        }
-        value={country.name}
-      >
-        {country.name}
-      </SelectItem>
-    ));
-  }, [countries]);
+const CountrySelect = memo(function CountrySelect({ name }: Prop) {
+  const memoCountries = useMemo(() => {
+    return countries;
+  }, []);
 
   return (
     <Select
+      isRequired
       label="Country"
       labelPlacement="inside"
+      name={name}
       placeholder="Select your country"
       radius="none"
       variant="bordered"
-      isRequired
-      name={name}
     >
-      {countryOptions}
+      {memoCountries.map((country) => (
+        <SelectItem
+          key={country.id}
+          startContent={
+            <Avatar alt={country.name} className="w-6 h-6" src={country.flag} />
+          }
+          value={country.name}
+        >
+          {country.name}
+        </SelectItem>
+      ))}
     </Select>
   );
-};
+});
 
 export default React.memo(CountrySelect);
