@@ -51,7 +51,7 @@ function SignUpForm() {
       }).unwrap();
 
       if (result.ok) {
-        router.push(`/onboarding-user`);
+        router.push("/");
       }
     } catch (err: any) {
       addToast("error", "Something went wrong", err.data.message);

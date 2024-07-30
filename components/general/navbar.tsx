@@ -18,6 +18,14 @@ import {
   MagnifyingGlassIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import {
+  Avatar,
+  Badge,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
 
 import Logo from "../logo/Logo";
 import { ThemeSwitch } from "../theme-switch";
@@ -29,12 +37,16 @@ import { useGetGigCategoryQuery } from "@/services/gig/gig.service";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { addCageGories } from "@/services/gig/reducers/gig.category";
 import { IGigcategory } from "@/interface/gig/category";
+import { useCurrentUser } from "@/libs/hooks/useCurrentUser";
+import { IUser } from "@/interface/auth/auth.interface";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function NavBar() {
+  const currentUser: IUser = useCurrentUser();
+
   const [selectedCategory, setSelectedCategory] = useState<IGigcategory | null>(
     null,
   );
@@ -257,25 +269,70 @@ export default function NavBar() {
                 </div>
               </PopoverGroup>
 
-              <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link
-                    className="text-sm font-medium  hover:text-gray-800"
-                    href="/signin"
-                  >
-                    Sign in
-                  </Link>
-                  <span
-                    aria-hidden="true"
-                    className="h-6 w-px bg-default-200"
-                  />
-                  <Link
-                    className="text-sm font-medium  hover:text-gray-800"
-                    href="/signup"
-                  >
-                    Create account
-                  </Link>
-                </div>
+              <div className="ml-auto flex justify-center items-center">
+                {currentUser ? (
+                  <>
+                    <Dropdown placement="bottom">
+                      <DropdownTrigger>
+                        <button className="h-8 w-8 transition-transform">
+                          <Badge
+                            className="bg-primary"
+                            content=""
+                            placement="bottom-right"
+                            shape="circle"
+                          >
+                            <Avatar
+                              size="sm"
+                              src="https://i.pravatar.cc/150?u=a04258114e29526708c"
+                            />
+                          </Badge>
+                        </button>
+                      </DropdownTrigger>
+                      <DropdownMenu aria-label="Profile Actions" variant="flat">
+                        <DropdownItem key="profile" className="h-14 gap-2">
+                          <p className="font-semibold">Signed in as</p>
+                          <p className="font-semibold">
+                            {currentUser.username}
+                          </p>
+                        </DropdownItem>
+                        <DropdownItem key="settings">My Settings</DropdownItem>
+                        <DropdownItem key="team_settings">
+                          Team Settings
+                        </DropdownItem>
+                        <DropdownItem key="analytics">Analytics</DropdownItem>
+                        <DropdownItem key="system">System</DropdownItem>
+                        <DropdownItem key="configurations">
+                          Configurations
+                        </DropdownItem>
+                        <DropdownItem key="help_and_feedback">
+                          Help & Feedback
+                        </DropdownItem>
+                        <DropdownItem key="logout" color="danger">
+                          Log Out
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
+                  </>
+                ) : (
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <Link
+                      className="text-sm font-medium  hover:text-default-500"
+                      href="/signin"
+                    >
+                      Sign in
+                    </Link>
+                    <span
+                      aria-hidden="true"
+                      className="h-6 w-px bg-default-200"
+                    />
+                    <Link
+                      className="text-sm font-medium  hover:text-default-500"
+                      href="/signup"
+                    >
+                      Create account
+                    </Link>
+                  </div>
+                )}
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
@@ -291,7 +348,6 @@ export default function NavBar() {
                   </Link>
                 </div>
 
-                {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <Link className="group flex items-center" href="#">
                     <ThemeSwitch />
