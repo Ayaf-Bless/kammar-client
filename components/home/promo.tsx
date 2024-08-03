@@ -25,7 +25,6 @@ const testimonials = [
 export default function Promo() {
   return (
     <div className="relative overflow-hidden">
-      {/* Decorative background image and gradient */}
       <div aria-hidden="true" className="absolute inset-0">
         <div className="absolute inset-0 mx-auto overflow-hidden xl:px-8">
           <img
@@ -38,7 +37,6 @@ export default function Promo() {
         <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-black via-white dark:via-black" />
       </div>
 
-      {/* Callout */}
       <section
         aria-labelledby="sale-heading"
         className="relative mx-auto flex flex-col items-center px-4 pt-32 text-center sm:px-6 lg:px-8"

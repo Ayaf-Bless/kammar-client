@@ -16,7 +16,7 @@ export interface Prop {
     | undefined;
   isExternal?: boolean;
   showAnchorIcon?: boolean;
-  className: string;
+  className?: string;
 }
 
 function AppLink({

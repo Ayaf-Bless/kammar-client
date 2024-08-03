@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 
+import AppLink from "../apps/AppLink";
+
 import { useForgotPasswordMutation } from "@/services/auth/auth.services";
 import { useToast } from "@/contexts/ToastContext";
 
@@ -89,6 +91,14 @@ function ForgetPasswordForm() {
           </Button>
           {error && <p className="text-red-500">{error}</p>}
         </form>
+
+        <p className="text-center text-small">
+          I want to&nbsp;
+          <AppLink className="text-small font-semibold" href="/signin">
+            sign in
+          </AppLink>
+          &nbsp;instead
+        </p>
       </div>
     </div>
   );
