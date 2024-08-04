@@ -10,6 +10,7 @@ import SideBarPanel from "@/components/seller/onboarding/side-bar-onboarding";
 import SponsorshipPanel from "@/components/seller/onboarding/sponsorship";
 import StepperControls from "@/components/seller/onboarding/stepper-controls";
 import { useStep } from "@/contexts/seller/StepContext";
+import SkillsAndExpertise from "@/components/seller/onboarding/skill-expertise";
 
 const SellerOnboardingContent = () => {
   const { step } = useStep();
@@ -20,7 +21,7 @@ const SellerOnboardingContent = () => {
     case 1:
       return <SetupProfileSeller />;
     case 2:
-      return <div>Choose Address Form Placeholder</div>;
+      return <SkillsAndExpertise />;
     case 3:
       return <SponsorshipPanel />;
     case 4:
