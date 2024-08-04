@@ -1,13 +1,12 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-
-import dynamic from "next/dynamic";
 
 const ReduxProvider = dynamic(() => import("@/store/reduxProviver"), {
   ssr: false,

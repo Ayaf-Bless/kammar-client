@@ -3,7 +3,7 @@
 import ProtectedRoute from "@/libs/hoc/ProtectedRoute";
 import { WithChildren } from "@/types";
 
-function AuthLayout({ children }: WithChildren) {
+function Layout({ children }: WithChildren) {
   return (
     <ProtectedRoute>
       <div className="flex flex-col gap-20 max-w-[90%] ml-20 mt-5 overflow-x-hidden">
@@ -15,4 +15,4 @@ function AuthLayout({ children }: WithChildren) {
   );
 }
 
-export default AuthLayout;
+export default Layout;
