@@ -1,7 +1,11 @@
 "use client";
 
+import { Divider } from "@nextui-org/react";
+
 import HorizontalSteps from "@/components/general/horizontal-steps";
+import Wrapper from "@/components/general/wrapper";
 import DosDonts from "@/components/seller/onboarding/dos-donts";
+import SetupProfileSeller from "@/components/seller/onboarding/setting-up-profile";
 import SideBarPanel from "@/components/seller/onboarding/side-bar-onboarding";
 import SponsorshipPanel from "@/components/seller/onboarding/sponsorship";
 import StepperControls from "@/components/seller/onboarding/stepper-controls";
@@ -14,11 +18,11 @@ const SellerOnboardingContent = () => {
     case 0:
       return <DosDonts />;
     case 1:
-      return <SponsorshipPanel />;
+      return <SetupProfileSeller />;
     case 2:
       return <div>Choose Address Form Placeholder</div>;
     case 3:
-      return <div>Complete Payment Form Placeholder</div>;
+      return <SponsorshipPanel />;
     case 4:
       return <div>Preview and Confirm Placeholder</div>;
     default:
@@ -31,19 +35,19 @@ const Stepper = () => {
   return (
     <HorizontalSteps
       currentStep={step}
-      defaultStep={0}
+      defaultStep={1}
       steps={[
         {
           title: "Dos and Don'ts",
         },
         {
-          title: "Seller Information",
+          title: "Setting up Profile",
         },
         {
-          title: "Choose Address",
+          title: "Skills & Expertise",
         },
         {
-          title: "Complete Payment",
+          title: "Sponsor and Category",
         },
         {
           title: "Preview and Confirm",
@@ -62,6 +66,9 @@ function page() {
           <Stepper />
         </div>
         <SellerOnboardingContent />
+        <Wrapper>
+          <Divider className="my-5" />
+        </Wrapper>
         <StepperControls />
       </div>
     </div>
