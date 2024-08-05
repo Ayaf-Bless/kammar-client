@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Wrapper from "@/components/general/wrapper";
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import { PlusIcon } from "@heroicons/react/24/outline";
+
+import Wrapper from "@/components/general/wrapper";
 
 interface IEducation {
   country: string;
@@ -84,7 +84,9 @@ function SkillsAndExpertise() {
     setItems: React.Dispatch<React.SetStateAction<T[]>>,
   ) => {
     const newItems = [...items];
-    newItems[index][key] = value;
+
+    newItems[index][key] = value as T[keyof T];
+
     setItems(newItems);
   };
 
@@ -103,15 +105,16 @@ function SkillsAndExpertise() {
               >
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`exp-company-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`exp-company-${index}`}
                   >
                     Company
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-company-${index}`}
                     name={`exp-company-${index}`}
+                    type="text"
                     value={exp.company}
                     onChange={(e) =>
                       handleChange(
@@ -122,20 +125,20 @@ function SkillsAndExpertise() {
                         setExperience,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`exp-title-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`exp-title-${index}`}
                   >
                     Title
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-title-${index}`}
                     name={`exp-title-${index}`}
+                    type="text"
                     value={exp.title}
                     onChange={(e) =>
                       handleChange(
@@ -146,20 +149,20 @@ function SkillsAndExpertise() {
                         setExperience,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`exp-startDate-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`exp-startDate-${index}`}
                   >
                     Start Date
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-startDate-${index}`}
                     name={`exp-startDate-${index}`}
+                    type="text"
                     value={exp.startDate}
                     onChange={(e) =>
                       handleChange(
@@ -170,20 +173,20 @@ function SkillsAndExpertise() {
                         setExperience,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`exp-endDate-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`exp-endDate-${index}`}
                   >
                     End Date
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-endDate-${index}`}
                     name={`exp-endDate-${index}`}
+                    type="text"
                     value={exp.endDate}
                     onChange={(e) =>
                       handleChange(
@@ -194,17 +197,17 @@ function SkillsAndExpertise() {
                         setExperience,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-6">
                   <label
-                    htmlFor={`exp-description-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`exp-description-${index}`}
                   >
                     Description
                   </label>
                   <textarea
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-description-${index}`}
                     name={`exp-description-${index}`}
                     value={exp.description}
@@ -217,15 +220,15 @@ function SkillsAndExpertise() {
                         setExperience,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-6 flex items-center">
                   <input
-                    type="checkbox"
+                    checked={exp.currentlyWorkingHere}
+                    className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     id={`exp-currentlyWorkingHere-${index}`}
                     name={`exp-currentlyWorkingHere-${index}`}
-                    checked={exp.currentlyWorkingHere}
+                    type="checkbox"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -235,22 +238,21 @@ function SkillsAndExpertise() {
                         setExperience,
                       )
                     }
-                    className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    htmlFor={`exp-currentlyWorkingHere-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`exp-currentlyWorkingHere-${index}`}
                   >
                     Currently working here
                   </label>
                 </div>
                 {index > 0 && (
                   <button
+                    className="text-red-500 hover:text-red-700"
                     type="button"
                     onClick={() =>
                       handleRemoveItem(index, experience, setExperience)
                     }
-                    className="text-red-500 hover:text-red-700"
                   >
                     ✖️
                   </button>
@@ -258,11 +260,11 @@ function SkillsAndExpertise() {
               </div>
             ))}
             <button
+              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
               type="button"
               onClick={() =>
                 handleAddItem(experience, setExperience, initialExperience)
               }
-              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Add Experience
             </button>
@@ -275,15 +277,16 @@ function SkillsAndExpertise() {
               >
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`edu-country-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`edu-country-${index}`}
                   >
                     Country
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-country-${index}`}
                     name={`edu-country-${index}`}
+                    type="text"
                     value={edu.country}
                     onChange={(e) =>
                       handleChange(
@@ -294,20 +297,20 @@ function SkillsAndExpertise() {
                         setEducation,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`edu-university-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`edu-university-${index}`}
                   >
                     University
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-university-${index}`}
                     name={`edu-university-${index}`}
+                    type="text"
                     value={edu.university}
                     onChange={(e) =>
                       handleChange(
@@ -318,20 +321,20 @@ function SkillsAndExpertise() {
                         setEducation,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`edu-title-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`edu-title-${index}`}
                   >
                     Title
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-title-${index}`}
                     name={`edu-title-${index}`}
+                    type="text"
                     value={edu.title}
                     onChange={(e) =>
                       handleChange(
@@ -342,20 +345,20 @@ function SkillsAndExpertise() {
                         setEducation,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`edu-major-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`edu-major-${index}`}
                   >
                     Major
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-major-${index}`}
                     name={`edu-major-${index}`}
+                    type="text"
                     value={edu.major}
                     onChange={(e) =>
                       handleChange(
@@ -366,20 +369,20 @@ function SkillsAndExpertise() {
                         setEducation,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`edu-year-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`edu-year-${index}`}
                   >
                     Year
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-year-${index}`}
                     name={`edu-year-${index}`}
+                    type="text"
                     value={edu.year}
                     onChange={(e) =>
                       handleChange(
@@ -390,16 +393,15 @@ function SkillsAndExpertise() {
                         setEducation,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 {index > 0 && (
                   <button
+                    className="text-red-500 hover:text-red-700"
                     type="button"
                     onClick={() =>
                       handleRemoveItem(index, education, setEducation)
                     }
-                    className="text-red-500 hover:text-red-700"
                   >
                     ✖️
                   </button>
@@ -407,11 +409,11 @@ function SkillsAndExpertise() {
               </div>
             ))}
             <button
+              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
               type="button"
               onClick={() =>
                 handleAddItem(education, setEducation, initialEducation)
               }
-              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Add Education
             </button>
@@ -424,15 +426,16 @@ function SkillsAndExpertise() {
               >
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`cert-name-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`cert-name-${index}`}
                   >
                     Name
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`cert-name-${index}`}
                     name={`cert-name-${index}`}
+                    type="text"
                     value={cert.name}
                     onChange={(e) =>
                       handleChange(
@@ -443,20 +446,20 @@ function SkillsAndExpertise() {
                         setCertificates,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`cert-from-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`cert-from-${index}`}
                   >
                     From
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`cert-from-${index}`}
                     name={`cert-from-${index}`}
+                    type="text"
                     value={cert.from}
                     onChange={(e) =>
                       handleChange(
@@ -467,20 +470,20 @@ function SkillsAndExpertise() {
                         setCertificates,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`cert-year-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`cert-year-${index}`}
                   >
                     Year
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`cert-year-${index}`}
                     name={`cert-year-${index}`}
+                    type="text"
                     value={cert.year}
                     onChange={(e) =>
                       handleChange(
@@ -491,16 +494,15 @@ function SkillsAndExpertise() {
                         setCertificates,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 {index > 0 && (
                   <button
+                    className="text-red-500 hover:text-red-700"
                     type="button"
                     onClick={() =>
                       handleRemoveItem(index, certificates, setCertificates)
                     }
-                    className="text-red-500 hover:text-red-700"
                   >
                     ✖️
                   </button>
@@ -508,11 +510,11 @@ function SkillsAndExpertise() {
               </div>
             ))}
             <button
+              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
               type="button"
               onClick={() =>
                 handleAddItem(certificates, setCertificates, initialCertificate)
               }
-              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Add Certificate
             </button>
@@ -525,15 +527,16 @@ function SkillsAndExpertise() {
               >
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`port-title-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`port-title-${index}`}
                   >
                     Title
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`port-title-${index}`}
                     name={`port-title-${index}`}
+                    type="text"
                     value={port.title}
                     onChange={(e) =>
                       handleChange(
@@ -544,20 +547,20 @@ function SkillsAndExpertise() {
                         setPortfolio,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor={`port-description-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`port-description-${index}`}
                   >
                     Description
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`port-description-${index}`}
                     name={`port-description-${index}`}
+                    type="text"
                     value={port.description}
                     onChange={(e) =>
                       handleChange(
@@ -568,20 +571,20 @@ function SkillsAndExpertise() {
                         setPortfolio,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 <div className="sm:col-span-6">
                   <label
-                    htmlFor={`port-url-${index}`}
                     className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor={`port-url-${index}`}
                   >
                     URL
                   </label>
                   <input
-                    type="text"
+                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`port-url-${index}`}
                     name={`port-url-${index}`}
+                    type="text"
                     value={port.url}
                     onChange={(e) =>
                       handleChange(
@@ -592,16 +595,15 @@ function SkillsAndExpertise() {
                         setPortfolio,
                       )
                     }
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                   />
                 </div>
                 {index > 0 && (
                   <button
+                    className="text-red-500 hover:text-red-700"
                     type="button"
                     onClick={() =>
                       handleRemoveItem(index, portfolio, setPortfolio)
                     }
-                    className="text-red-500 hover:text-red-700"
                   >
                     ✖️
                   </button>
@@ -609,11 +611,11 @@ function SkillsAndExpertise() {
               </div>
             ))}
             <button
+              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
               type="button"
               onClick={() =>
                 handleAddItem(portfolio, setPortfolio, initialPortfolio)
               }
-              className="mt-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Add Portfolio
             </button>
