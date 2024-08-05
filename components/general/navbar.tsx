@@ -349,10 +349,10 @@ export default function NavBar() {
                 </div>
 
                 <div className="ml-4 flow-root lg:ml-6">
-                  <Link className="group flex items-center" href="#">
+                  {/* <div className="group flex items-center">
                     <ThemeSwitch />
                     <span className="sr-only">switch theme</span>
-                  </Link>
+                  </div> */}
                 </div>
               </div>
             </div>

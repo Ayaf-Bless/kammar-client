@@ -45,7 +45,7 @@ export default function RootLayout({
         )}
       >
         <ReduxProvider>
-          <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
             <main className="w-full">{children}</main>
           </Providers>
         </ReduxProvider>

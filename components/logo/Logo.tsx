@@ -7,9 +7,9 @@ import NextLink from "next/link";
 import useThemeSwitcher from "@/libs/hooks/useThemeSwitcher";
 
 const Logo: React.FC = () => {
-  const { mounted, toggleTheme } = useThemeSwitcher();
+  // const { mounted, toggleTheme } = useThemeSwitcher();
 
-  if (!mounted) return null;
+  // if (!mounted) return null;
 
   return (
     <div>
@@ -23,7 +23,7 @@ const Logo: React.FC = () => {
             Kammar
           </span>
           ket
-          <span
+          {/* <span
             className="mx-1 h-4 w-4 bg-primary rounded-full cursor-pointer"
             role="button"
             tabIndex={0}
@@ -37,7 +37,7 @@ const Logo: React.FC = () => {
                 toggleTheme();
               }
             }}
-          />
+          /> */}
         </Link>
       </div>
     </div>
