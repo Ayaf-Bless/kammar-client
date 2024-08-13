@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { ChangeEventHandler, useState } from "react";
+import { Textarea } from "@nextui-org/input";
 
 import Wrapper from "@/components/general/wrapper";
 import { useCharacterCount } from "@/libs/hooks/useCharacterCount";
+import { AppInputWithPrefix } from "@/components/apps/AppInputs";
 
 interface Language {
   language: string;
@@ -31,7 +33,7 @@ const proficiencyLevels = [
 ];
 
 function SetupProfileSeller() {
-  const { remainingChars, handleInputChange, isMax } = useCharacterCount(100);
+  const { remainingChars, handleInputChange, isMax } = useCharacterCount(200);
 
   const [languages, setLanguages] = useState<Language[]>([
     { language: "", proficiency: "" },
@@ -76,18 +78,10 @@ function SetupProfileSeller() {
                   Profession <span className="text-danger-500">*</span>
                 </label>
                 <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 sm:max-w-md">
-                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
-                      I am a/an{" "}
-                    </span>
-                    <input
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                      id="profession"
-                      name="profession"
-                      placeholder="content creator"
-                      type="text"
-                    />
-                  </div>
+                  <AppInputWithPrefix
+                    placeholder="content creator"
+                    prefix="I am a/an"
+                  />
                 </div>
               </div>
 
@@ -99,14 +93,16 @@ function SetupProfileSeller() {
                   Bio <span className="text-danger-500">*</span>
                 </label>
                 <div className="mt-2">
-                  <textarea
-                    className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 
-                    sm:text-sm sm:leading-6`}
+                  <Textarea
                     id="bio"
                     maxLength={100}
                     name="bio"
+                    radius="sm"
                     rows={3}
-                    onChange={handleInputChange}
+                    variant="bordered"
+                    onChange={
+                      handleInputChange as unknown as ChangeEventHandler<HTMLInputElement>
+                    }
                   />
                   <div className="flex items-center justify-between">
                     <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -115,7 +111,7 @@ function SetupProfileSeller() {
                     <p
                       className={`mt-1 text-sm leading-6 text-right ${isMax ? "text-green-600" : "text-gray-600"}`}
                     >
-                      {remainingChars}/100
+                      {remainingChars}/200
                     </p>
                   </div>
                 </div>
@@ -135,7 +131,7 @@ function SetupProfileSeller() {
                     </label>
                     <div className="mt-2">
                       <select
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:text-sm sm:leading-6"
                         id={`language-${index}`}
                         name={`language-${index}`}
                         value={lang.language}
@@ -165,7 +161,7 @@ function SetupProfileSeller() {
                     </label>
                     <div className="mt-2">
                       <select
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:text-sm sm:leading-6"
                         id={`proficiency-${index}`}
                         name={`proficiency-${index}`}
                         value={lang.proficiency}
@@ -202,7 +198,7 @@ function SetupProfileSeller() {
 
               <div className="sm:col-span-6">
                 <button
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                   type="button"
                   onClick={addLanguage}
                 >

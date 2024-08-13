@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/button";
 import React from "react";
+import { Divider } from "@nextui-org/react";
 
 import Wrapper from "@/components/general/wrapper";
 import { useStep } from "@/contexts/seller/StepContext";
@@ -9,6 +10,7 @@ const StepperControls: React.FC = () => {
 
   return (
     <Wrapper>
+      <Divider className="my-5" />
       <div className="flex space-x-3">
         <Button
           disableAnimation

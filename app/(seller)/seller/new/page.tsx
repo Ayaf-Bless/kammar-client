@@ -36,7 +36,7 @@ const Stepper = () => {
   return (
     <HorizontalSteps
       currentStep={step}
-      defaultStep={1}
+      defaultStep={2}
       steps={[
         {
           title: "Dos and Don'ts",
@@ -67,9 +67,7 @@ function page() {
           <Stepper />
         </div>
         <SellerOnboardingContent />
-        <Wrapper>
-          <Divider className="my-5" />
-        </Wrapper>
+
         <StepperControls />
       </div>
     </div>

@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  Checkbox,
+  DatePicker,
+  Input,
+  Textarea,
+} from "@nextui-org/react";
 
 import Wrapper from "@/components/general/wrapper";
 
@@ -110,12 +117,13 @@ function SkillsAndExpertise() {
                   >
                     Company
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0 py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-company-${index}`}
                     name={`exp-company-${index}`}
                     type="text"
                     value={exp.company}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -134,12 +142,13 @@ function SkillsAndExpertise() {
                   >
                     Title
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-title-${index}`}
                     name={`exp-title-${index}`}
                     type="text"
                     value={exp.title}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -158,12 +167,13 @@ function SkillsAndExpertise() {
                   >
                     Start Date
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-startDate-${index}`}
                     name={`exp-startDate-${index}`}
                     type="text"
                     value={exp.startDate}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -182,12 +192,13 @@ function SkillsAndExpertise() {
                   >
                     End Date
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-endDate-${index}`}
                     name={`exp-endDate-${index}`}
                     type="text"
                     value={exp.endDate}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -206,11 +217,12 @@ function SkillsAndExpertise() {
                   >
                     Description
                   </label>
-                  <textarea
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Textarea
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`exp-description-${index}`}
                     name={`exp-description-${index}`}
                     value={exp.description}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -223,9 +235,9 @@ function SkillsAndExpertise() {
                   />
                 </div>
                 <div className="sm:col-span-6 flex items-center">
-                  <input
-                    checked={exp.currentlyWorkingHere}
-                    className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  <Checkbox
+                    // checked={exp.currentlyWorkingHere}
+                    // className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     id={`exp-currentlyWorkingHere-${index}`}
                     name={`exp-currentlyWorkingHere-${index}`}
                     type="checkbox"
@@ -238,13 +250,14 @@ function SkillsAndExpertise() {
                         setExperience,
                       )
                     }
-                  />
-                  <label
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                    htmlFor={`exp-currentlyWorkingHere-${index}`}
                   >
-                    Currently working here
-                  </label>
+                    <label
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                      htmlFor={`exp-currentlyWorkingHere-${index}`}
+                    >
+                      Currently working here
+                    </label>
+                  </Checkbox>
                 </div>
                 {index > 0 && (
                   <button
@@ -282,12 +295,13 @@ function SkillsAndExpertise() {
                   >
                     Country
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-country-${index}`}
                     name={`edu-country-${index}`}
                     type="text"
                     value={edu.country}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -306,12 +320,13 @@ function SkillsAndExpertise() {
                   >
                     University
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-university-${index}`}
                     name={`edu-university-${index}`}
                     type="text"
                     value={edu.university}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -330,12 +345,13 @@ function SkillsAndExpertise() {
                   >
                     Title
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-title-${index}`}
                     name={`edu-title-${index}`}
                     type="text"
                     value={edu.title}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -354,12 +370,13 @@ function SkillsAndExpertise() {
                   >
                     Major
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`edu-major-${index}`}
                     name={`edu-major-${index}`}
                     type="text"
                     value={edu.major}
+                    variant="bordered"
                     onChange={(e) =>
                       handleChange(
                         index,
@@ -378,21 +395,23 @@ function SkillsAndExpertise() {
                   >
                     Year
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <DatePicker
+                    // className="mt-1 block w-full rounded-md border-0 bg-none py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                    showMonthAndYearPickers
                     id={`edu-year-${index}`}
                     name={`edu-year-${index}`}
-                    type="text"
-                    value={edu.year}
-                    onChange={(e) =>
-                      handleChange(
-                        index,
-                        "year",
-                        e.target.value,
-                        education,
-                        setEducation,
-                      )
-                    }
+                    variant="bordered"
+                    // type="text"
+                    // value={edu.year}
+                    // onChange={(e) =>
+                    //   handleChange(
+                    //     index,
+                    //     "year",
+                    //     e.target.value,
+                    //     education,
+                    //     setEducation,
+                    //   )
+                    // }
                   />
                 </div>
                 {index > 0 && (
@@ -418,7 +437,7 @@ function SkillsAndExpertise() {
               Add Education
             </button>
           </AccordionItem>
-          <AccordionItem title="Certificates">
+          {/* <AccordionItem title="Certificates">
             {certificates.map((cert, index) => (
               <div
                 key={index}
@@ -431,8 +450,8 @@ function SkillsAndExpertise() {
                   >
                     Name
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`cert-name-${index}`}
                     name={`cert-name-${index}`}
                     type="text"
@@ -455,8 +474,8 @@ function SkillsAndExpertise() {
                   >
                     From
                   </label>
-                  <input
-                    className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                  <Input
+                    // className="mt-1 block w-full rounded-md border-0  py-1.5 px-2 focus:outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`cert-from-${index}`}
                     name={`cert-from-${index}`}
                     type="text"
@@ -479,7 +498,7 @@ function SkillsAndExpertise() {
                   >
                     Year
                   </label>
-                  <input
+                  <Input
                     className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`cert-year-${index}`}
                     name={`cert-year-${index}`}
@@ -532,7 +551,7 @@ function SkillsAndExpertise() {
                   >
                     Title
                   </label>
-                  <input
+                  <Input
                     className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`port-title-${index}`}
                     name={`port-title-${index}`}
@@ -556,7 +575,7 @@ function SkillsAndExpertise() {
                   >
                     Description
                   </label>
-                  <input
+                  <Input
                     className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`port-description-${index}`}
                     name={`port-description-${index}`}
@@ -580,7 +599,7 @@ function SkillsAndExpertise() {
                   >
                     URL
                   </label>
-                  <input
+                  <Input
                     className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
                     id={`port-url-${index}`}
                     name={`port-url-${index}`}
@@ -619,7 +638,7 @@ function SkillsAndExpertise() {
             >
               Add Portfolio
             </button>
-          </AccordionItem>
+          </AccordionItem> */}
         </Accordion>
       </form>
     </Wrapper>
