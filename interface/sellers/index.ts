@@ -114,3 +114,17 @@ export interface ISeller {
 
   reviews: IReview[];
 }
+
+export interface IContent {
+  type: string;
+  url?: string;
+  text?: string;
+}
+
+export interface IPortfolio {
+  title: string;
+  role: string;
+  skills: string[];
+  description: string;
+  content: IContent;
+}

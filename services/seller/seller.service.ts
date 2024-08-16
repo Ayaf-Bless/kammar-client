@@ -1,6 +1,6 @@
 import { IReview } from "@/interface/general/review";
 import { AppResponse } from "@/interface/RequestResponse";
-import { ISeller } from "@/interface/sellers";
+import { IPortfolio, ISeller } from "@/interface/sellers";
 import { api } from "@/store/api";
 
 const PREFIX = "seller";
@@ -68,6 +68,47 @@ export const sellerApi = api.injectEndpoints({
           url: `${PREFIX}/reviews/${data.reviewId}`,
           method: "PATCH",
           body: data.review,
+        };
+      },
+      invalidatesTags: ["Seller"],
+    }),
+
+    addPortfolio: build.mutation<
+      AppResponse<ISeller>,
+      { sellerId: string; portfolio: IPortfolio }
+    >({
+      query(data) {
+        return {
+          url: `${PREFIX}/${data.sellerId}/portfolio`,
+          method: "POST",
+          body: data.portfolio,
+        };
+      },
+      invalidatesTags: ["Seller"],
+    }),
+
+    updatePortfolio: build.mutation<
+      AppResponse<ISeller>,
+      { sellerId: string; portfolioId: string; portfolio: Partial<IPortfolio> }
+    >({
+      query(data) {
+        return {
+          url: `${PREFIX}/${data.sellerId}/portfolio/${data.portfolioId}`,
+          method: "PATCH",
+          body: data.portfolio,
+        };
+      },
+      invalidatesTags: ["Seller"],
+    }),
+
+    deletePortfolio: build.mutation<
+      AppResponse<ISeller>,
+      { sellerId: string; portfolioId: string }
+    >({
+      query(data) {
+        return {
+          url: `${PREFIX}/${data.sellerId}/portfolio/${data.portfolioId}`,
+          method: "DELETE",
         };
       },
       invalidatesTags: ["Seller"],
