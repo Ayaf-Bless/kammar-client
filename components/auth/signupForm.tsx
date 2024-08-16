@@ -13,7 +13,6 @@ import usePasswordVisibility from "@/libs/hooks/usePasswordVisibility";
 import { PASSWORD_MIN_LENGTH } from "@/utils/constants";
 import { useSignUpMutation } from "@/services/auth/auth.services";
 import { useToast } from "@/contexts/ToastContext";
-import Toast from "../general/Toast";
 
 const signUpSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),

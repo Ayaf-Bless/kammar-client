@@ -8,7 +8,7 @@ import {
 
 import { getAccessToken, getRefreshToken } from "@/libs/general/token";
 
-const BASE_ENDPOINT = "http://localhost:3000";
+const BASE_ENDPOINT = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${BASE_ENDPOINT}/v1/gateway`,
@@ -27,7 +27,6 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
 });
 
-// TODO: to test if the token is expired
 const baseQueryWithReAuth: BaseQueryFn<
   string | FetchArgs | unknown | FetchBaseQueryError
 > = async (args, api, extraOption) => {

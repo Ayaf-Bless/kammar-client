@@ -34,9 +34,9 @@ function Feature() {
     <div className="light:bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-[90%] px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-primary-700">
+          <p className="text-lg font-semibold leading-8 tracking-tight text-primary">
             Discover and Hire the Best
-          </h2>
+          </p>
           <p className="mt-2 text-3xl font-bold tracking-tight light:text-gray-900 sm:text-4xl">
             The Ultimate Platform for Your Project Needs
           </p>

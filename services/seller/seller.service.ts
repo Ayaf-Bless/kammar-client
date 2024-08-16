@@ -194,4 +194,7 @@ export const {
   useGetSponsoredSellerOfACategoryQuery,
   useUpdateSellerQuery,
   useUpdateReviewMutation,
+  useAddPortfolioMutation,
+  useDeletePortfolioMutation,
+  useUpdatePortfolioMutation,
 } = sellerApi;
