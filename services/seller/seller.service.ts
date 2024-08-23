@@ -17,7 +17,7 @@ export const sellerApi = api.injectEndpoints({
       providesTags: ["Seller"],
     }),
 
-    becomeSeller: build.mutation<AppResponse<ISeller>, ISeller>({
+    becomeSeller: build.mutation<AppResponse<ISeller>, Partial<ISeller>>({
       query(body) {
         return {
           url: `${PREFIX}`,

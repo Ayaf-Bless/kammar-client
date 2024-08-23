@@ -13,7 +13,7 @@ export function AppInputWithPrefix({
         {prefix}{" "}
       </span>
       <input
-        className="block flex-1 border-0 focus:outline-none bg-transparent focus:border-solid py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+        className="block flex-1 border-0 focus:outline-none focus:border-black bg-transparent focus:border-solid py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6"
         id="profession"
         name="profession"
         placeholder={placeholder}

@@ -1,9 +1,12 @@
 import { ChangeEventHandler, useState } from "react";
-import { Textarea } from "@nextui-org/input";
+import { Input, Textarea } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
+import { Select, SelectItem } from "@nextui-org/react";
 
 import Wrapper from "@/components/general/wrapper";
 import { useCharacterCount } from "@/libs/hooks/useCharacterCount";
 import { AppInputWithPrefix } from "@/components/apps/AppInputs";
+import Badge from "@/components/general/badge";
 
 interface Language {
   language: string;
@@ -35,25 +38,32 @@ const proficiencyLevels = [
 function SetupProfileSeller() {
   const { remainingChars, handleInputChange, isMax } = useCharacterCount(200);
 
-  const [languages, setLanguages] = useState<Language[]>([
-    { language: "", proficiency: "" },
-  ]);
+  // const [becomeseller, { isLoading }] = useBecomeSellerMutation();
 
-  const addLanguage = () => {
-    setLanguages([...languages, { language: "", proficiency: "" }]);
+  const [languages, setLanguages] = useState<Language[]>([]);
+  const [skills, setSkills] = useState<string[]>([]);
+  const [currentLanguage, setCurrentLanguage] = useState<Language>({
+    language: "",
+    proficiency: "",
+  });
+  const [currentSkill, setCurrentSkill] = useState<string>("");
+
+  const handleAddLanguage = () => {
+    if (currentLanguage.language && currentLanguage.proficiency) {
+      setLanguages([...languages, currentLanguage]);
+      setCurrentLanguage({ language: "", proficiency: "" });
+    }
   };
 
-  const handleLanguageChange = (index: number, key: string, value: string) => {
-    const newLanguages = [...languages];
-
-    newLanguages[index][key as keyof Language] = value;
-    setLanguages(newLanguages);
+  const handleLanguageChange = (key: keyof Language, value: string) => {
+    setCurrentLanguage((prev) => ({ ...prev, [key]: value }));
   };
 
-  const removeLanguage = (index: number) => {
-    const newLanguages = languages.filter((_, i) => i !== index);
-
-    setLanguages(newLanguages);
+  const handleAddSkill = () => {
+    if (currentSkill) {
+      setSkills([...skills, currentSkill]);
+      setCurrentSkill("");
+    }
   };
 
   return (
@@ -65,7 +75,7 @@ function SetupProfileSeller() {
               Profile
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              This information will be displayed publicly and fields with{" "}
+              This information will be displayed publicly. Fields with{" "}
               <span className="text-danger-500">*</span> are mandatory.
             </p>
 
@@ -117,93 +127,124 @@ function SetupProfileSeller() {
                 </div>
               </div>
 
-              {languages.map((lang, index) => (
-                <div
-                  key={index}
-                  className="sm:col-span-6 grid grid-cols-2 gap-x-4"
-                >
-                  <div>
-                    <label
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                      htmlFor={`language-${index}`}
+              {/* Language Input */}
+              <div className="flex flex-col justify-between gap-2 w-[50vw] ">
+                <div>
+                  <label
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="language"
+                  >
+                    Language <span className="text-danger-500">*</span>
+                  </label>
+                  <div className="mt-2">
+                    <Select
+                      // className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+                      id="language"
+                      label="Select Language"
+                      name="language"
+                      selectedKeys={currentLanguage.language}
+                      value={currentLanguage.language}
+                      variant="bordered"
+                      onChange={(e) =>
+                        handleLanguageChange("language", e.target.value)
+                      }
                     >
-                      Language <span className="text-danger-500">*</span>
-                    </label>
-                    <div className="mt-2">
-                      <select
-                        className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:text-sm sm:leading-6"
-                        id={`language-${index}`}
-                        name={`language-${index}`}
-                        value={lang.language}
-                        onChange={(e) =>
-                          handleLanguageChange(
-                            index,
-                            "language",
-                            e.target.value,
-                          )
-                        }
-                      >
-                        <option value="">Select Language</option>
-                        {languagesList.map((language) => (
-                          <option key={language} value={language}>
-                            {language}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                      htmlFor={`proficiency-${index}`}
-                    >
-                      Proficiency
-                    </label>
-                    <div className="mt-2">
-                      <select
-                        className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:text-sm sm:leading-6"
-                        id={`proficiency-${index}`}
-                        name={`proficiency-${index}`}
-                        value={lang.proficiency}
-                        onChange={(e) =>
-                          handleLanguageChange(
-                            index,
-                            "proficiency",
-                            e.target.value,
-                          )
-                        }
-                      >
-                        <option value="">Select Proficiency</option>
-                        {proficiencyLevels.map((level) => (
-                          <option key={level} value={level}>
-                            {level}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    {index > 0 && (
-                      <div className="flex items-center justify-center">
-                        <button
-                          className="text-red-500 hover:text-red-700"
-                          type="button"
-                          onClick={() => removeLanguage(index)}
-                        >
-                          ✖️
-                        </button>
-                      </div>
-                    )}
+                      {languagesList.map((language) => (
+                        <SelectItem key={language} value={language}>
+                          {language}
+                        </SelectItem>
+                      ))}
+                    </Select>
                   </div>
                 </div>
-              ))}
+                <div>
+                  <label
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="proficiency"
+                  >
+                    Proficiency
+                  </label>
+                  <div className="mt-2">
+                    <Select
+                      // className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+                      id="proficiency"
+                      label="Select Proficiency"
+                      name="proficiency"
+                      selectedKeys={currentLanguage.proficiency}
+                      value={currentLanguage.proficiency}
+                      variant="bordered"
+                      onChange={(e) =>
+                        handleLanguageChange("proficiency", e.target.value)
+                      }
+                    >
+                      {proficiencyLevels.map((level) => (
+                        <SelectItem key={level} value={level}>
+                          {level}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+                </div>
+                <div>
+                  <Button
+                    // className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                    color="secondary"
+                    type="button"
+                    variant="ghost"
+                    onClick={handleAddLanguage}
+                  >
+                    Add Language
+                  </Button>
+                </div>
+              </div>
 
+              {/* Display Added Languages as Badges */}
+              <div className="sm:col-span-6 flex flex-wrap gap-2">
+                {languages.map((lang, index) => (
+                  <Badge key={index} type="indigo">
+                    {lang.language} - {lang.proficiency}
+                  </Badge>
+                ))}
+              </div>
+
+              {/* Skill Input */}
               <div className="sm:col-span-6">
-                <button
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-                  type="button"
-                  onClick={addLanguage}
+                <label
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                  htmlFor="skill"
                 >
-                  Add Language
-                </button>
+                  Skills
+                </label>
+                <div className="mt-2 flex flex-col gap-2">
+                  <Input
+                    // className="mr-2"
+                    id="skill"
+                    name="skill"
+                    placeholder="Enter a skill"
+                    value={currentSkill}
+                    variant="bordered"
+                    onChange={(e) => setCurrentSkill(e.target.value)}
+                  />
+                  <div>
+                    <Button
+                      // className="ml-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                      color="secondary"
+                      variant="ghost"
+                      onClick={handleAddSkill}
+                    >
+                      Add Skill
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Display Added Skills as Badges */}
+              <div className="sm:col-span-6 flex flex-wrap gap-2">
+                {skills.map((skill, index) => (
+                  <Badge key={index} type="indigo">
+                    {skill}
+                  </Badge>
+                ))}
               </div>
             </div>
           </div>
